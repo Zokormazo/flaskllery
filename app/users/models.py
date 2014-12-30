@@ -16,3 +16,5 @@ class User(db.Model, UserMixin):
 
 	# User activity information
 	active = db.Column('is_active', db.Boolean(), nullable=False, server_default='0')
+	registered_at = db.Column(db.DateTime, default=db.func.now())
+	last_seen = db.Column(db.DateTime)

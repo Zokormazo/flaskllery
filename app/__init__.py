@@ -45,5 +45,8 @@ app.logger.info('Flaskllery startup')
 # import main views
 from app import views, errors
 
+# import user views
+from app.users import views
+
 
 
