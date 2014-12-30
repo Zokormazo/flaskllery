@@ -1,11 +1,16 @@
-<html>
-  <head>
-    <title>Flaskllery</title>
-  </head>
-  <body>
-    <div id="header">Flaskllery</div>
-    <div id="content">
-      {% block content %}{% endblock %}
-    </div>
-  </body>
-</html>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Flaskllery{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    {% block page_content %}{% endblock %}
+</div>
+{% endblock %}
+
+
