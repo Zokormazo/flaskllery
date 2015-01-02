@@ -18,3 +18,6 @@ class User(db.Model, UserMixin):
 	active = db.Column('is_active', db.Boolean(), nullable=False, server_default='0')
 	registered_at = db.Column(db.DateTime, default=db.func.now())
 	last_seen = db.Column(db.DateTime)
+
+	# Relationships
+	albums = db.relationship('Album', backref='author', lazy='dynamic')

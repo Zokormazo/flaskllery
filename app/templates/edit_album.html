@@ -1,0 +1,21 @@
+{% extends "member_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_header %}
+<h1>Edit Album
+    <br />
+    <small>{{ album.title }}</small>
+</h1>
+{% endblock %}
+
+{% block page_content %}
+<div class="row">
+    <h4>General</h4>
+    {{ wtf.quick_form(form) }}
+    <hr>
+    <h4>Directories</h4>
+    {% for directory in directorios %}
+    {% endfor %}
+</div>
+{% endblock %}
+

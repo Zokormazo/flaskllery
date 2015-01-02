@@ -42,11 +42,14 @@ if not app.debug:
 app.logger.setLevel(logging.INFO)
 app.logger.info('Flaskllery startup')
 
-# import main views
-from app import views, errors
+# import error views
+from app import errors
 
 # import user views
 from app.users import views
+
+# import gallery views
+from app.gallery import views
 
 
 

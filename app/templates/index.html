@@ -1,5 +1,30 @@
 <!-- extend base layout -->
-{% extends "base.html" %}
+{% extends "member_base.html" %}
+{% from "_macros.html" import render_pagination %}
+
+{% block page_header %}
+<h1>Albums</h1>
+{% endblock %}
+
+{% block page_navbar %}
+<li><a href="{{ url_for('new_album') }}">New Album</a></li>
+{% endblock %}
+
 {% block page_content %}
-    <h1>Index</h1>
+<div class="row">
+    {% for album in albums.items %}
+    <div class="col-md-4 portfolio-item">
+        <a href="{{ url_for('album', id=album.id) }}">
+            <img class="img-responsive" src="http://placehold.it/600x400">
+        </a>
+        <h3>
+            <a href="{{ url_for('album', id=album.id) }}">{{ album.title }}</a>
+        </h3>
+        <p>{{ album.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+<div class="text-center">
+{{ render_pagination(albums) }}
+</div>
 {% endblock %}
