@@ -14,8 +14,27 @@
     {{ wtf.quick_form(form) }}
     <hr>
     <h4>Directories</h4>
-    {% for directory in directorios %}
-    {% endfor %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>path</th>
+                <th>since</th>
+                <th>last updated</th>
+		<th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for directory in album.directories %}
+            <tr>
+                <td>{{ directory.path }}</td>
+                <td>{{ directory.added_at }}</td>
+                <td>{{ directory.updated_at }}</td>
+		<td><a href="{{ url_for('refresh_directory', id=directory.id) }}">Refresh</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {{ wtf.quick_form(directory_form) }}
 </div>
 {% endblock %}
 

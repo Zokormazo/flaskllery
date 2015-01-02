@@ -14,12 +14,47 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Album</a>
     <ul class="dropdown-menu">
         <li><a href="{{ url_for('edit_album', id=album.id) }}">Edit</a></li>
-        <li><a href="#" data="{{ url_for('delete_album', id=album.id) }}" class="delete-album" onclick="_gaq.push(['_trackEvent', 'example, 'try', 'Danger']);">Delete</a></li>
+        <li><a href="#" data-url="{{ url_for('delete_album', id=album.id) }}" class="delete-album" onclick="_gaq.push(['_trackEvent', 'example, 'try', 'Danger']);">Delete</a></li>
     </ul>
 </li>
 {% endblock %}
 
 {% block page_content %}
 <div class="row">
+{% for photo in album.photos %}
+<div class="col-md-3 portfolio-item thumb">
+    <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="{{ photo.title }}" data-caption="{{ photo.caption }}" data-image="{{ url_for('photo', id=photo.id, width='900', height='600') }}" data-target="#image-gallery">
+        <img class="img-responsive" src="{{ url_for('photo', id=photo.id, width='450', height='300') }}" alt="Short alt text">
+    </a>
+</div>
+{% endfor %}
+</div>
+
+<div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="image-gallery-title"></h4>
+            </div>
+            <div class="modal-body">
+                <img id="image-gallery-image" class="img-responsive" src="">
+            </div>
+            <div class="modal-footer">
+
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary" id="show-previous-image">Previous</button>
+                </div>
+
+                <div class="col-md-8 text-justify" id="image-gallery-caption">
+                    This text will be overwritten by jQuery
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="show-next-image" class="btn btn-default">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
