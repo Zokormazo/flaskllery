@@ -28,7 +28,7 @@
             <tr>
                 <td>{{ directory.path }}</td>
                 <td>{{ directory.added_at }}</td>
-                <td>{{ directory.updated_at }}</td>
+                <td>{{ directory.refreshed_at }}</td>
 		<td><a href="{{ url_for('refresh_directory', id=directory.id) }}">Refresh</a></td>
             </tr>
             {% endfor %}

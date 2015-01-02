@@ -23,7 +23,7 @@ def new_album():
 		album = Album(title=form.title.data, description=form.description.data, author=g.user)
 		db.session.add(album)
 		db.session.commit()
-		flash('New album added')
+		flash('New album \'' + album.title + '\' added')
 		return redirect(url_for('index'))
 	return render_template('new_album.html', form=form)
 
@@ -44,11 +44,13 @@ def edit_album(id):
 		album.description = form.description.data
 		db.session.add(album)
 		db.session.commit()
+		flash('Album \'' + album.title + '\' edited')
 		return redirect(url_for('album', id=album.id))
 	if directory_form.validate_on_submit() and directory_form.submit.data:
 		directory = Directory(album=album, path=directory_form.path.data)
 		db.session.add(directory)
 		db.session.commit()
+		flash('\'' + directory.path + '\' directory added to \'' + album.title + '\'')
 		return redirect(url_for('edit_album', id=album.id))
 
 	form.title.data = album.title
@@ -61,13 +63,23 @@ def delete_album(id):
 	album = Album.query.get(id)
 	db.session.delete(album)
 	db.session.commit()
+	flash('\'' + album.title + '\' album deleted')
 	return redirect(url_for('index'))
+
+@app.route('/album/refresh/<int:id>')
+@login_required
+def refresh_album(id):
+	album = Album.query.get(id)
+	album.refresh()
+	flash('\'' + album.title + '\' album refreshed')
+	return redirect(url_for('album', id=album.id))
 
 @app.route('/directory/refresh/<int:id>')
 @login_required
 def refresh_directory(id):
 	directory = Directory.query.get(id)
 	directory.refresh()
+	flash('Directory \'' + directory.path + '\' refreshed')
 	return redirect(url_for('album', id=directory.album_id))
 
 @app.route('/photo/file/<int:id>')
@@ -79,12 +91,4 @@ def photo_file(id):
 @login_required
 def photo(id, width, height):
 	photo = Photo.query.get(id)
-	filename = photo.path
-	try:
-		im = Image.open(filename)
-		im.thumbnail((width, height), Image.ANTIALIAS)
-		io = StringIO.StringIO()
-		im.save(io, format='JPEG')
-		return Response(io.getvalue(), mimetype='image/jpeg')
-	except IOError:
-		abort(404)
+	return photo.thumb(width,height)

@@ -1,6 +1,9 @@
 from app import db
 import os
 from datetime import datetime
+from config import FLASKLLERY_CACHE_DIR
+from flask import send_file
+from PIL import Image
 
 class Album(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
@@ -43,6 +46,8 @@ class Directory(db.Model):
 				if Photo.query.filter_by(path = path).first() is None:
 					photo = Photo( path = path, updated_at = datetime.utcnow(), album = self.album )
 					db.session.add(photo)
+		self.refreshed_at = datetime.utcnow()
+		db.session.add(self)
 		db.session.commit()
 
 class Photo(db.Model):
@@ -57,3 +62,21 @@ class Photo(db.Model):
 	# Timestamp information
 	added_at = db.Column(db.DateTime, default=db.func.now(), nullable = False)
 	updated_at = db.Column(db.DateTime)
+
+	# Get specified size thumbnail
+	def thumb(self, width, height):
+		cache_dir = os.path.join(FLASKLLERY_CACHE_DIR, str(width) + 'x' + str(height))
+		thumb_path = os.path.join(cache_dir, str(self.id) + '.jpg')
+		if not os.path.exists(thumb_path):
+			self._generate_thumb(width,height)
+		return send_file(thumb_path)
+
+	# Generate specified size thumb
+	def _generate_thumb(self, width, height):
+		cache_dir = os.path.join(FLASKLLERY_CACHE_DIR, str(width) + 'x' + str(height))
+		if not os.path.isdir(cache_dir):
+                        os.mkdir(cache_dir)
+		target = os.path.join(cache_dir, str(self.id) + '.jpg')
+		im = Image.open(self.path)
+		im.thumbnail((width, height), Image.ANTIALIAS)
+		im.save(target, "JPEG")
