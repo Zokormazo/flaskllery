@@ -31,12 +31,12 @@ class Album(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 
 	# Album information
-	title = db.Column(db.String(64), nullable = False)
+	title = db.Column(db.String(64))
 	description = db.Column(db.String(255))
 	author_id = db.Column('author', db.Integer, db.ForeignKey('user.id'), nullable = False)
 
 	# Timestamp information
-	created_at = db.Column(db.DateTime, default=db.func.now(), nullable = False)
+	created_at = db.Column(db.DateTime, default=db.func.now())
 	timestamp_from = db.Column(db.DateTime)
 	timestamp_to = db.Column(db.DateTime)
 
@@ -57,7 +57,7 @@ class Directory(db.Model):
 	album_id = db.Column('album', db.Integer, db.ForeignKey('album.id'), nullable = False)
 
 	# Timestamp information
-	added_at = db.Column(db.DateTime, default=db.func.now(), nullable = False)
+	added_at = db.Column(db.DateTime, default=db.func.now())
 	refreshed_at = db.Column(db.DateTime)
 
 	# Refresh directory
