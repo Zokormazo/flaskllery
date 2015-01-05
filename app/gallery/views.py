@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, g, send_file, abort, Response, jsonify
 from flask.ext.user import login_required
-from app.gallery.models import Album, Directory, Photo
+from app.models import Album, Directory, Photo
 from app.gallery.forms import NewAlbumForm, EditAlbumForm, AddDirectoryForm
 from app import app, db
 from config import FLASKLLERY_ALBUMS_PER_PAGE

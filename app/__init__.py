@@ -14,7 +14,7 @@ mail = Mail(app)				# Initialize Flask-Mail
 bootstrap = Bootstrap(app)			# Initialize Flask-Bootstrap
 
 # Setup Flask-User
-from app.users.models import User
+from app.models import User
 db_adapter = SQLAlchemyAdapter(db, User)	# Register the user model
 user_manager = UserManager(db_adapter, app)	# Initialize Flask-User
 
