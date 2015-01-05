@@ -80,3 +80,15 @@ class Photo(db.Model):
 		im = Image.open(self.path)
 		im.thumbnail((width, height), Image.ANTIALIAS)
 		im.save(target, "JPEG")
+
+	# Photo in json format
+	def json(self):
+		json_photo = {
+			'id' : self.id,
+			'path' : self.path,
+			'title' : self.title,
+			'caption' : self.caption,
+			'added_at' : self.added_at,
+			'updated_at' : self.updated_at
+		}
+		return json_photo

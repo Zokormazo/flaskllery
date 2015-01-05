@@ -30,6 +30,14 @@ $('#photoModal').on('show.bs.modal', function (event) {
     modal.find('.btn-edit').attr('href', '/photo/edit/' + id)
     modal.find('.btn-delete').attr('href', '/photo/delete/' + id)
     modal.find('.btn-download').attr('href', '/photo/raw/' + id)
+    $.getJSON('/json/photo/' + id, function(data,status) {
+        if (data.title != null){
+            $('#image-title').text((data.title))
+        }
+        if (data.caption != null){
+            $('#image-caption').text(data.caption)
+        }
+    });
 });
 
 $('.btn-more-info').on('click', function(event) {
