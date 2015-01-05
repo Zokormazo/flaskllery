@@ -32,3 +32,20 @@
 </nav>
 {% endwith %}
 {% endmacro %}
+
+{% macro render_delete_modal()
+-%}
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="modal-message">aaaa</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="deleteModal-button">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}

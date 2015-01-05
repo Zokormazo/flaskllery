@@ -80,14 +80,24 @@ def refresh_directory(id):
 	directory = Directory.query.get(id)
 	directory.refresh()
 	flash('Directory \'' + directory.path + '\' refreshed')
-	return redirect(url_for('album', id=directory.album_id))
+	return redirect(url_for('edit_album', id=directory.album_id))
 
-@app.route('/photo/file/<int:id>')
+@app.route('/directory/delete/<int:id>')
+@login_required
+def delete_directory(id):
+	directory = Directory.query.get(id)
+	album = directory.album
+	db.session.delete(directory)
+	db.session.commit()
+	flash('\'' + directory.path + '\' directory deleted from \'' + album.title + '\'')
+	return redirect(url_for('edit_album', id=album.id))
+
+@app.route('/photo/raw/<int:id>')
 def photo_file(id):
 	photo = Photo.query.get(id)
 	return send_file(photo.path)
 
-@app.route('/photo/<int:id>/<int:width>x<int:height>')
+@app.route('/photo/thumb/<int:id>/<int:width>x<int:height>')
 @login_required
 def photo(id, width, height):
 	photo = Photo.query.get(id)

@@ -20,7 +20,7 @@ class Album(db.Model):
 
 	# Relationships
 	directories = db.relationship('Directory', backref='album', lazy='dynamic')
-	photos = db.relationship('Photo', backref='album', lazy='dynamic')
+	photos = db.relationship('Photo', backref='photos', lazy='dynamic')
 
 	# Refresh directories
 	def refresh(self):

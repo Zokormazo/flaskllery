@@ -17,10 +17,10 @@
       {% block page_navbar %}{% endblock %}
       {% if g.user.is_authenticated() %}
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.username }}</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{ g.user.username }}</a>
         <ul class="dropdown-menu">
-          <li><a href="{{ url_for('user.profile') }}">Profile</a></li>
-          <li><a href="{{ url_for('user.logout') }}">Logout</a></li>
+          <li><a href="{{ url_for('user.profile') }}"><span class="glyphicon glyphicon-home"></span> Profile</a></li>
+          <li><a href="{{ url_for('user.logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
       </li>
       {% else %}
@@ -54,5 +54,7 @@
     {# Page content #}
     {% block page_content %}{% endblock %}
 </div>
+<div class="container">
+{% block page_modals %}{% endblock %}
 {% endblock %}
-
+</div>

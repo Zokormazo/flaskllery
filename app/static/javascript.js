@@ -1,72 +1,40 @@
-document.querySelector('.delete-album').onclick = function(){
-    swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover album!",
-        type: "error",
-        showCancelButton: true,
-        confirmButtonClass: 'btn-danger',
-        confirmButtonText: 'Delete!'
-    },
-
-    function(){
-        var url = document.getElementsByClassName('delete-album')[0].getAttribute("data-url");
-	document.location.href = url;
-    });
-};
-
-$(document).ready(function(){
-
-    loadGallery(true, 'a.thumbnail');
-
-    //This function disables buttons when needed
-    function disableButtons(counter_max, counter_current){
-        $('#show-previous-image, #show-next-image').show();
-        if(counter_max == counter_current){
-            $('#show-next-image').hide();
-        } else if (counter_current == 1){
-            $('#show-previous-image').hide();
-        }
-    }
-
-    /**
-     *
-     * @param setIDs        Sets IDs when DOM is loaded. If using a PHP counter, set to false.
-     * @param setClickAttr  Sets the attribute for the click handler.
-     */
-
-    function loadGallery(setIDs, setClickAttr){
-        var current_image,
-            selector,
-            counter = 0;
-
-        $('#show-next-image, #show-previous-image').click(function(){
-            if($(this).attr('id') == 'show-previous-image'){
-                current_image--;
-            } else {
-                current_image++;
-            }
-
-            selector = $('[data-image-id="' + current_image + '"]');
-            updateGallery(selector);
-        });
-
-        function updateGallery(selector) {
-            var $sel = selector;
-            current_image = $sel.data('image-id');
-            $('#image-gallery-caption').text($sel.data('caption'));
-            $('#image-gallery-title').text($sel.data('title'));
-            $('#image-gallery-image').attr('src', $sel.data('image'));
-            disableButtons(counter, $sel.data('image-id'));
-        }
-
-        if(setIDs == true){
-            $('[data-image-id]').each(function(){
-                counter++;
-                $(this).attr('data-image-id',counter);
-            });
-        }
-        $(setClickAttr).on('click',function(){
-            updateGallery($(this));
-        });
-    }
+// Delete modal
+$('#deleteModal').on('show.bs.modal', function (event) {
+    var trigger = $(event.relatedTarget) // tag that triggered the modal
+    var element = trigger.data('element')
+    var type = trigger.data('type')
+    var id = trigger.data('id')
+    var modal = $(this)
+    modal.find('.modal-message').text('Are you sure you want to delete ' + element + ' ' + type + '?')
+    modal.data('id', id)
+    modal.data('type', type)
 });
+
+$('#deleteModal-button').click(function () {
+    var id = $('#deleteModal').data('id')
+    var type = $('#deleteModal').data('type')
+    document.location.href = '/' + type + '/delete/' + id
+    $('#deleteModal').modal('hide')
+});
+
+// End Delete modal
+
+// Photo modal
+$('#photoModal').on('show.bs.modal', function (event) {
+    var trigger = $(event.relatedTarget) // tag that triggered the modal
+    var id = trigger.data('id')
+    var modal = $(this)
+    modal.data('id', id)
+    modal.find('.photo').attr('src', '/photo/thumb/' + id + '/900x600')
+    modal.find('.btn-open').attr('href', '/photo/view/' + id)
+    modal.find('.btn-edit').attr('href', '/photo/edit/' + id)
+    modal.find('.btn-delete').attr('href', '/photo/delete/' + id)
+    modal.find('.btn-download').attr('href', '/photo/raw/' + id)
+});
+
+$('.btn-more-info').on('click', function(event) {
+        event.preventDefault();
+        $( '.more-info' ).toggleClass( "hide" );
+    })
+
+// End Photo modal
