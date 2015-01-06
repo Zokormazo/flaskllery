@@ -50,6 +50,3 @@ from app.users import views
 
 # import gallery views
 from app.gallery import views
-
-
-
