@@ -25,7 +25,8 @@ class User(db.Model, UserMixin):
 	last_seen = db.Column(db.DateTime)
 
 	# Relationships
-	albums = db.relationship('Album', backref='author', lazy='dynamic')
+	albums = db.relationship('Album', backref='author', lazy='dynamic', cascade='save-update, merge, delete, delete-orphan')
+	photos = db.relationship('Photo', backref='author', lazy='dynamic', cascade='save-update, merge, delete, delete-orphan')
 
 class Album(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
@@ -36,13 +37,13 @@ class Album(db.Model):
 	author_id = db.Column('author', db.Integer, db.ForeignKey('user.id'), nullable = False)
 
 	# Timestamp information
-	created_at = db.Column(db.DateTime, default=db.func.now())
+	created_at = db.Column(db.DateTime, default=db.func.now(), nullable = False)
 	timestamp_from = db.Column(db.DateTime)
 	timestamp_to = db.Column(db.DateTime)
 
 	# Relationships
-	directories = db.relationship('Directory', backref='album', lazy='dynamic')
-	photos = db.relationship('Photo', backref='photos', lazy='dynamic')
+	directories = db.relationship('Directory', backref='album', lazy='dynamic', cascade='merge, save-update, delete, delete-orphan')
+	photos = db.relationship('Photo', backref='album', lazy='dynamic', cascade='merge, save-update, delete, delete-orphan')
 
 	# Refresh directories
 	def refresh(self):
@@ -57,8 +58,11 @@ class Directory(db.Model):
 	album_id = db.Column('album', db.Integer, db.ForeignKey('album.id'), nullable = False)
 
 	# Timestamp information
-	added_at = db.Column(db.DateTime, default=db.func.now())
+	added_at = db.Column(db.DateTime, default=db.func.now(), nullable = False)
 	refreshed_at = db.Column(db.DateTime)
+
+	# Relationships
+	photos = db.relationship('Photo', backref='directory', lazy='dynamic', cascade='merge, save-update, delete, delete-orphan')
 
 	# Refresh directory
 	def refresh(self):
@@ -66,7 +70,7 @@ class Directory(db.Model):
 			if file.endswith(".jpg") or file.endswith(".JPG"):
 				path = os.path.join(self.path,file)
 				if Photo.query.filter_by(path = path).first() is None:
-					photo = Photo( path = path, updated_at = datetime.utcnow(), album = self.album )
+					photo = Photo( path = path, updated_at = datetime.utcnow(), album = self.album, directory_id = self.id, author_id = self.album.author.id )
 					db.session.add(photo)
 		self.refreshed_at = datetime.utcnow()
 		db.session.add(self)
@@ -78,8 +82,13 @@ class Photo(db.Model):
 	# Photo information
 	path = db.Column(db.String(255), nullable = False, index = True)
 	album_id = db.Column('album', db.Integer, db.ForeignKey('album.id'), nullable = False)
+	directory_id = db.Column('directory', db.Integer, db.ForeignKey('directory.id'), nullable = False)
+	author_id = db.Column('author', db.Integer, db.ForeignKey('user.id'), nullable = False)
 	title = db.Column(db.String(64))
 	caption = db.Column(db.String(255))
+	size = db.Column(db.Integer)
+	width = db.Column(db.Integer)
+	height = db.Column(db.Integer)
 
 	# Timestamp information
 	added_at = db.Column(db.DateTime, default=db.func.now(), nullable = False)
