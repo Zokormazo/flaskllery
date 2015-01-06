@@ -25,12 +25,11 @@ $('#photoModal').on('show.bs.modal', function (event) {
     var id = trigger.data('id')
     var modal = $(this)
     modal.data('id', id)
-    modal.find('.photo').attr('src', '/photo/thumb/' + id + '/900x600')
-    modal.find('.btn-open').attr('href', '/photo/view/' + id)
-    modal.find('.btn-edit').attr('href', '/photo/edit/' + id)
-    modal.find('.btn-delete').attr('href', '/photo/delete/' + id)
-    modal.find('.btn-download').attr('href', '/photo/raw/' + id)
-    $.getJSON('/json/photo/' + id, function(data,status) {
+    modal.find('.photo').attr('src', '/gallery/photo/thumb/' + id + '/900x600')
+    modal.find('.btn-open').attr('href', '/gallery/photo/view/' + id)
+    modal.find('.btn-edit').attr('href', '/gallery/photo/edit/' + id)
+    modal.find('.btn-download').attr('href', '/gallery/photo/raw/' + id)
+    $.getJSON('/gallery/json/photo/' + id, function(data,status) {
         if (data.title != null){
             $('#image-title').text((data.title))
         }

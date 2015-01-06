@@ -14,9 +14,9 @@
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Album</a>
     <ul class="dropdown-menu">
-        <li><a href="{{ url_for('edit_album', id=album.id) }}">Edit</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#deleteModal" data-element="{{ album.title }}" data-type="album" data-id="{{ album.id}}"">Delete</a></li>
-        <li><a href="{{ url_for('refresh_album', id=album.id) }}">Refresh</a></li>
+        <li><a href="{{ url_for('gallery.edit_album', id=album.id) }}">Edit</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#deleteModal" data-element="{{ album.title }}" data-type="gallery/album" data-id="{{ album.id}}"">Delete</a></li>
+        <li><a href="{{ url_for('gallery.refresh_album', id=album.id) }}">Refresh</a></li>
     </ul>
 </li>
 {% endblock %}
@@ -26,7 +26,7 @@
 {% for photo in album.photos %}
 <div class="col-md-3 portfolio-item thumb">
     <a href="#" class="thumbnail" data-toggle="modal" data-target="#photoModal" data-id="{{ photo.id }}">
-        <img class="img-responsive" src="{{ url_for('photo', id=photo.id, width='450', height='300') }}" alt="Short alt text">
+        <img class="img-responsive" src="{{ url_for('gallery.photo', id=photo.id, width='450', height='300') }}" alt="Short alt text">
     </a>
 </div>
 {% endfor %}

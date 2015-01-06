@@ -2,7 +2,7 @@ from app import db
 from flask.ext.user import UserMixin
 import os
 from datetime import datetime
-from config import FLASKLLERY_CACHE_DIR
+from config import basedir
 from flask import send_file
 from PIL import Image
 
@@ -96,7 +96,7 @@ class Photo(db.Model):
 
 	# Get specified size thumbnail
 	def thumb(self, width, height):
-		cache_dir = os.path.join(FLASKLLERY_CACHE_DIR, str(width) + 'x' + str(height))
+		cache_dir = os.path.join(basedir, 'cache/' + str(width) + 'x' + str(height))
 		thumb_path = os.path.join(cache_dir, str(self.id) + '.jpg')
 		if not os.path.exists(thumb_path):
 			self._generate_thumb(width,height)

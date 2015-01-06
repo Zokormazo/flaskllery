@@ -32,8 +32,8 @@
                 <td>{{ directory.refreshed_at }}</td>
 		<td>
 
-                    <a href="{{ url_for('refresh_directory', id=directory.id) }}" class="btn btn-sm btn-default" aria-label="Refresh"><span class="glyphicon glyphicon-refresh"></span></a>
-                    <a href="#" class="btn btn-default btn-sm confirm-delete" aria-label="Delete" data-toggle="modal" data-target="#deleteModal" data-element="{{ directory.path }}" data-type="directory" data-id="{{ directory.id}}"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="{{ url_for('gallery.refresh_directory', id=directory.id) }}" class="btn btn-sm btn-default" aria-label="Refresh"><span class="glyphicon glyphicon-refresh"></span></a>
+                    <a href="#" class="btn btn-default btn-sm confirm-delete" aria-label="Delete" data-toggle="modal" data-target="#deleteModal" data-element="{{ directory.path }}" data-type="gallery/directory" data-id="{{ directory.id}}"><span class="glyphicon glyphicon-remove"></span></a>
                 </td>
             </tr>
             {% endfor %}

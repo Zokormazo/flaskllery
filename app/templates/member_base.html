@@ -10,14 +10,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ url_for('index') }}">Flaskllery</a>
+      <a class="navbar-brand" href="{{ url_for('gallery.index') }}">Flaskllery</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
       {% block page_navbar %}{% endblock %}
-      {% if g.user.is_authenticated() %}
+      {% if current_user.is_authenticated() %}
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{ g.user.username }}</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{ current_user.username }}</a>
         <ul class="dropdown-menu">
           <li><a href="{{ url_for('user.profile') }}"><span class="glyphicon glyphicon-home"></span> Profile</a></li>
           <li><a href="{{ url_for('user.logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
