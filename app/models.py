@@ -3,7 +3,7 @@ from flask.ext.user import UserMixin
 import os
 from datetime import datetime
 from config import basedir
-from flask import send_file
+from flask import send_file, current_app
 from PIL import Image
 
 # User data model
@@ -104,7 +104,7 @@ class Photo(db.Model):
 
 	# Generate specified size thumb
 	def _generate_thumb(self, width, height):
-		cache_dir = os.path.join(FLASKLLERY_CACHE_DIR, str(width) + 'x' + str(height))
+		cache_dir = os.path.join(current_app.config['FLASKLLERY_CACHE_DIR'], str(width) + 'x' + str(height))
 		if not os.path.isdir(cache_dir):
                         os.mkdir(cache_dir)
 		target = os.path.join(cache_dir, str(self.id) + '.jpg')
