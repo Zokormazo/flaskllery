@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, send_file, abort, Response, jsonify
+from flask import render_template, flash, redirect, url_for, send_file, abort, Response, jsonify, current_app
 from flask.ext.user import login_required, current_user
 from flask.ext.babel import gettext
 from app.models import Album, Directory, Photo
@@ -16,7 +16,7 @@ def index(page=1):
 	'''
 	Show gallery main page: album list
 	'''
-	albums = Album.query.paginate(page, 6, False)
+	albums = Album.query.paginate(page, current_app.config['FLASKLLERY_ALBUMS_PER_PAGE'], False)
 	return render_template('index.html', albums=albums)
 
 @blueprint.route('/album/new', methods=['GET', 'POST'])
@@ -35,13 +35,15 @@ def new_album():
 	return render_template('new_album.html', form=form)
 
 @blueprint.route('/album/view/<int:id>')
+@blueprint.route('/album/view/<int:id>/<int:page>')
 @login_required
-def album(id):
+def album(id, page=1):
 	'''
 	View album
 	'''
 	album = Album.query.get(id)
-	return render_template('album.html', album=album)
+	photos = Photo.query.filter(Photo.album_id == album.id).paginate(page, current_app.config['FLASKLLERY_PHOTOS_PER_PAGE'], False)
+	return render_template('album.html', album=album, photos=photos)
 
 @blueprint.route('/album/edit/<int:id>', methods=['GET', 'POST'])
 @login_required

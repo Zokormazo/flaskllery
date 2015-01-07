@@ -28,9 +28,10 @@
         </h3>
         <p>{{ album.description }}</p>
     </div>
+    {% if loop.index is divisibleby 3 %}
+    <div class="clearfix"></div>
+    {% endif %}
     {% endfor %}
 </div>
-<div class="text-center">
 {{ render_pagination(albums) }}
-</div>
 {% endblock %}

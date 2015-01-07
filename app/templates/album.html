@@ -23,14 +23,18 @@
 
 {% block page_content %}
 <div class="row">
-{% for photo in album.photos %}
+{% for photo in photos.items %}
 <div class="col-md-3 portfolio-item thumb">
     <a href="#" class="thumbnail" data-toggle="modal" data-target="#photoModal" data-id="{{ photo.id }}">
         <img class="img-responsive" src="{{ url_for('gallery.photo', id=photo.id, width='450', height='300') }}">
     </a>
 </div>
+{% if loop.index is divisibleby 4 %}
+<div class="clearfix"></div>
+{% endif %}
 {% endfor %}
 </div>
+{{ render_pagination(photos, id=album.id) }}
 
 <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
