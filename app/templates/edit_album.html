@@ -28,10 +28,15 @@
             {% for directory in album.directories %}
             <tr>
                 <td>{{ directory.path }}</td>
-                <td>{{ directory.added_at }}</td>
-                <td>{{ directory.refreshed_at }}</td>
+                <td>{{ moment(directory.added_at).fromNow() }}</td>
+                <td>
+                    {% if directory.refreshed_at %}
+                    {{ moment(directory.refreshed_at).fromNow() }}
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
 		<td>
-
                     <a href="{{ url_for('gallery.refresh_directory', id=directory.id) }}" class="btn btn-sm btn-default" aria-label="{{ _('Refresh') }}"><span class="glyphicon glyphicon-refresh"></span></a>
                     <a href="#" class="btn btn-default btn-sm confirm-delete" aria-label="{{ _('Delete') }}" data-toggle="modal" data-target="#deleteModal" data-message="{{ _('Are you sure you want to delete %(directory)s directory? Removing a directory will remove all the photos fetched from it', directory=directory.path) }}" data-url="{{ url_for('gallery.delete_directory', id=directory.id) }}"><span class="glyphicon glyphicon-remove"></span></a>
                 </td>
