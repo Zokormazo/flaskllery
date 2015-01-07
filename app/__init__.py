@@ -3,6 +3,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.mail import Mail
 from flask.ext.user import UserManager, SQLAlchemyAdapter
 from flask.ext.bootstrap import Bootstrap
+from flask.ext.babel import Babel
 from config import config
 
 import os
@@ -13,6 +14,7 @@ bootstrap = Bootstrap()
 from app.models import User
 db_adapter = SQLAlchemyAdapter(db, User)
 user_manager = UserManager(db_adapter)
+babel = Babel()
 
 def create_app(config_name):
 	# Setup Flask app and load config.py
@@ -24,6 +26,7 @@ def create_app(config_name):
 	mail.init_app(app)
 	bootstrap.init_app(app)
 	user_manager.init_app(app)
+	babel.init_app(app)
 
 	from app.main import blueprint as main_blueprint
 	app.register_blueprint(main_blueprint)

@@ -19,10 +19,10 @@
                     </br>
                     {# Remember me #}
                     {% if user_manager.enable_remember_me %}
-                    {{ login_form.remember_me(type="checkbox") }} Remember me
+                    {{ login_form.remember_me(type="checkbox") }} {{ _('Remember me') }}
                     </br>
                     {% endif %}
-                    <input type="submit" value="login"> 
+                    <input type="submit" value="{{ _('Login') }}"> 
                     </br>
                 </div>
             </div>

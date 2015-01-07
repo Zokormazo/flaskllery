@@ -3,11 +3,11 @@
 {% from "_macros.html" import render_pagination %}
 
 {% block page_header %}
-<h1>Albums</h1>
+<h1>{{ _('Albums') }}</h1>
 {% endblock %}
 
 {% block page_navbar %}
-<li><a href="{{ url_for('gallery.new_album') }}">New Album</a></li>
+<li><a href="{{ url_for('gallery.new_album') }}">{{ _('New Album') }}</a></li>
 {% endblock %}
 
 {% block page_content %}

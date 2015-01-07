@@ -1,5 +1,6 @@
 from flask import render_template, flash, redirect, url_for, send_file, abort, Response, jsonify
 from flask.ext.user import login_required, current_user
+from flask.ext.babel import gettext
 from app.models import Album, Directory, Photo
 from app.gallery.forms import NewAlbumForm, EditAlbumForm, AddDirectoryForm
 from app import db
@@ -29,7 +30,7 @@ def new_album():
 		album = Album(title=form.title.data, description=form.description.data, author=current_user)
 		db.session.add(album)
 		db.session.commit()
-		flash('New album \'' + album.title + '\' added')
+		flash(gettext('New album \'%(album)s\' added', album=album.title))
 		return redirect(url_for('.index'))
 	return render_template('new_album.html', form=form)
 
@@ -56,7 +57,7 @@ def edit_album(id):
 		album.description = form.description.data
 		db.session.add(album)
 		db.session.commit()
-		flash('Album \'' + album.title + '\' edited')
+		flash(gettext('Album \'%(album)s\' edited'), album=album.title)
 		return redirect(url_for('.album', id=album.id))
 	if directory_form.validate_on_submit() and directory_form.submit.data:
 		directory = Directory(album=album, path=directory_form.path.data)
@@ -78,7 +79,7 @@ def delete_album(id):
 	album = Album.query.get(id)
 	db.session.delete(album)
 	db.session.commit()
-	flash('\'' + album.title + '\' album deleted')
+	flash(gettext('\'%(album)s\' album deleted', album=album.title))
 	return redirect(url_for('.index'))
 
 @blueprint.route('/album/refresh/<int:id>')
@@ -89,7 +90,7 @@ def refresh_album(id):
 	'''
 	album = Album.query.get(id)
 	album.refresh()
-	flash('\'' + album.title + '\' album refreshed')
+	flash(gettext('\'%(album)s\' album refreshed', album=album.title))
 	return redirect(url_for('.album', id=album.id))
 
 @blueprint.route('/directory/refresh/<int:id>')
@@ -100,7 +101,7 @@ def refresh_directory(id):
 	'''
 	directory = Directory.query.get(id)
 	directory.refresh()
-	flash('Directory \'' + directory.path + '\' refreshed')
+	flash(gettext('Directory \'%(directory)s\' refreshed', directory=directory.path))
 	return redirect(url_for('.edit_album', id=directory.album_id))
 
 @blueprint.route('/directory/delete/<int:id>')
@@ -113,7 +114,7 @@ def delete_directory(id):
 	album = directory.album
 	db.session.delete(directory)
 	db.session.commit()
-	flash('\'' + directory.path + '\' directory deleted from \'' + album.title + '\'')
+	flash(gettext('\'%(directory)s\' directory deleted from \'%(album)s\'', directory=directory.path, album=album.title))
 	return redirect(url_for('.edit_album', id=album.id))
 
 @blueprint.route('/photo/raw/<int:id>')

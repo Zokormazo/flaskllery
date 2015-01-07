@@ -1,19 +1,16 @@
 // Delete modal
 $('#deleteModal').on('show.bs.modal', function (event) {
     var trigger = $(event.relatedTarget) // tag that triggered the modal
-    var element = trigger.data('element')
-    var type = trigger.data('type')
-    var id = trigger.data('id')
+    var message = trigger.data('message')
+    var url = trigger.data('url')
     var modal = $(this)
-    modal.find('.modal-message').text('Are you sure you want to delete ' + element + ' ' + type + '?')
-    modal.data('id', id)
-    modal.data('type', type)
+    modal.find('.modal-message').text(message)
+    modal.data('url', url)
 });
 
 $('#deleteModal-button').click(function () {
-    var id = $('#deleteModal').data('id')
-    var type = $('#deleteModal').data('type')
-    document.location.href = '/' + type + '/delete/' + id
+    var url = $('#deleteModal').data('url')
+    document.location.href = url
     $('#deleteModal').modal('hide')
 });
 

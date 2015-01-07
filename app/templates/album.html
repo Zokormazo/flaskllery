@@ -14,9 +14,9 @@
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Album</a>
     <ul class="dropdown-menu">
-        <li><a href="{{ url_for('gallery.edit_album', id=album.id) }}">Edit</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#deleteModal" data-element="{{ album.title }}" data-type="gallery/album" data-id="{{ album.id}}"">Delete</a></li>
-        <li><a href="{{ url_for('gallery.refresh_album', id=album.id) }}">Refresh</a></li>
+        <li><a href="{{ url_for('gallery.edit_album', id=album.id) }}">{{ _('Edit') }}</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#deleteModal" data-message="{{ _('Are you sure you want to remove %(album)s album? Deleting an album will delete all the inside directory and photos', album=album.title) }}" data-url="{{ url_for('gallery.delete_album', id=album.id) }}">{{ _('Delete') }}</a></li>
+        <li><a href="{{ url_for('gallery.refresh_album', id=album.id) }}">{{ _('Refresh') }}</a></li>
     </ul>
 </li>
 {% endblock %}
@@ -26,7 +26,7 @@
 {% for photo in album.photos %}
 <div class="col-md-3 portfolio-item thumb">
     <a href="#" class="thumbnail" data-toggle="modal" data-target="#photoModal" data-id="{{ photo.id }}">
-        <img class="img-responsive" src="{{ url_for('gallery.photo', id=photo.id, width='450', height='300') }}" alt="Short alt text">
+        <img class="img-responsive" src="{{ url_for('gallery.photo', id=photo.id, width='450', height='300') }}">
     </a>
 </div>
 {% endfor %}
@@ -51,26 +51,25 @@
                         <div class="btn-toolbar" role="toolbar">
                             <br>
                             <div class="btn-group">
-                                <a href="#" class="btn btn-default btn-more-info" aria-label="Information"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="#" class="btn btn-default btn-open" aria-label="Open"><span class="glyphicon glyphicon-folder-open"></span></a>
-                                <a href="#" class="btn btn-default btn-edit" aria-label="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="#" class="btn btn-default btn-delete" aria-label="Delete"><span class="glyphicon glyphicon-remove"></span></a>
-                                <a href="#" class="btn btn-default btn-download" aria-label="Download" target="_blank"><span class="glyphicon glyphicon-download"></span></a>
+                                <a href="#" class="btn btn-default btn-more-info" aria-label="{{ _('Information') }}"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="#" class="btn btn-default btn-open" aria-label="{{ _('Open') }}"><span class="glyphicon glyphicon-folder-open"></span></a>
+                                <a href="#" class="btn btn-default btn-edit" aria-label="{{ _('Edit') }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="#" class="btn btn-default btn-download" aria-label="{{ _('Download') }}" target="_blank"><span class="glyphicon glyphicon-download"></span></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="more-info hide">
                     <ul id="ImageInfoTab" class="nav nav-tabs">
-                        <li role="presentation" class="active"><a href="#general" data-toggle="tab">General</a></li>
-                        <li role="presentation"><a href="#exif" data-toggle="tab">Exif</a></li>
+                        <li role="presentation" class="active"><a href="#general" data-toggle="tab">{{ _('General') }}</a></li>
+                        <li role="presentation"><a href="#exif" data-toggle="tab">{{ _('Exif') }}</a></li>
                     </ul>
                     <div id="ImageInfoTabContent" class="tab-content">
                         <div class="tab-pane fade in active" id="general">
-                            <p>General Information</p>
+                            <p>{{_('General Information') }}</p>
                         </div>
                         <div class="tab-pane fade" id="exif">
-                            <p>Exif Information</p>
+                            <p>{{ _('Exif Information') }}</p>
                         </div>
                     </div>
                 </div>

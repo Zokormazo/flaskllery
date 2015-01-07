@@ -3,7 +3,7 @@
 {% from "_macros.html" import render_delete_modal %}
 
 {% block page_header %}
-<h1>Edit Album
+<h1>{{ _('Edit Album') }}
     <br />
     <small>{{ album.title }}</small>
 </h1>
@@ -11,16 +11,16 @@
 
 {% block page_content %}
 <div class="row">
-    <h4>General</h4>
+    <h4>{{ _('General') }}</h4>
     {{ wtf.quick_form(form) }}
     <hr>
-    <h4>Directories</h4>
+    <h4>{{ _('Directories') }}</h4>
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>path</th>
-                <th>since</th>
-                <th>last updated</th>
+                <th>{{ _('path') }}</th>
+                <th>{{ _('since') }}</th>
+                <th>{{ _('last updated') }}</th>
 		<th></th>
             </tr>
         </thead>
@@ -32,8 +32,8 @@
                 <td>{{ directory.refreshed_at }}</td>
 		<td>
 
-                    <a href="{{ url_for('gallery.refresh_directory', id=directory.id) }}" class="btn btn-sm btn-default" aria-label="Refresh"><span class="glyphicon glyphicon-refresh"></span></a>
-                    <a href="#" class="btn btn-default btn-sm confirm-delete" aria-label="Delete" data-toggle="modal" data-target="#deleteModal" data-element="{{ directory.path }}" data-type="gallery/directory" data-id="{{ directory.id}}"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="{{ url_for('gallery.refresh_directory', id=directory.id) }}" class="btn btn-sm btn-default" aria-label="{{ _('Refresh') }}"><span class="glyphicon glyphicon-refresh"></span></a>
+                    <a href="#" class="btn btn-default btn-sm confirm-delete" aria-label="{{ _('Delete') }}" data-toggle="modal" data-target="#deleteModal" data-message="{{ _('Are you sure you want to delete %(directory)s directory? Removing a directory will remove all the photos fetched from it', directory=directory.path) }}" data-url="{{ url_for('gallery.delete_directory', id=directory.id) }}"><span class="glyphicon glyphicon-remove"></span></a>
                 </td>
             </tr>
             {% endfor %}
