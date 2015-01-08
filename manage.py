@@ -1,6 +1,6 @@
 #!flask/bin/python
 from app import create_app, db
-from flask.ext.script import Manager, Shell
+from flask.ext.script import Manager, Shell, Command, Option
 from flask.ext.migrate import Migrate, MigrateCommand
 from app.models import User, Album, Directory, Photo
 import os
@@ -36,6 +36,37 @@ def test():
 	print('Coverage Summary:')
 	cov.report()
 	cov.erase()
+
+def _get_pybabel():
+	import sys
+	if sys.platform == 'win32':
+		pybabel = 'flask\\Scripts\\pybabel'
+	else:
+		pybabel = 'flask/bin/pybabel'
+	return pybabel
+
+BabelCommand = Manager(usage='Perform pybabel related tasks')
+
+@BabelCommand.command
+def update(babel_cfg = 'app/babel.cfg', translations_dir = 'app/translations', pot_file='app/translations/messages.pot'):
+	"""Update catalogs with new texts."""
+	pybabel = _get_pybabel()
+	os.system(pybabel + ' extract -F ' + babel_cfg + ' -k lazy_gettext -o ' + pot_file + ' app')
+	os.system(pybabel + ' update -i ' + pot_file + ' -d ' + translations_dir)
+
+@BabelCommand.command
+def compile(translations_dir = 'app/translations'):
+	"""Compile the catalogs."""
+	pybabel = _get_pybabel()
+	os.system(pybabel + ' compile -d ' + translations_dir)
+
+@BabelCommand.command
+def init(language, translations_dir = 'app/translations', pot_file='app/translations/messages.pot'):
+	"""Init new language catalogs."""
+	pybabel = _get_pybabel()
+	os.system(pybabel + ' init -i ' + pot_file + ' -d ' + translations_dir + ' -l ' + language)
+
+manager.add_command('babel', BabelCommand)
 
 if __name__ == "__main__":
 	manager.run()
