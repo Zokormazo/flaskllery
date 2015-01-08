@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-01-07 13:11+0100\n"
+"POT-Creation-Date: 2015-01-08 12:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,27 +22,27 @@ msgstr ""
 msgid "New album '%(album)s' added"
 msgstr ""
 
-#: app/gallery/views.py:60
+#: app/gallery/views.py:62
 #, python-format
 msgid "Album '%(album)s' edited"
 msgstr ""
 
-#: app/gallery/views.py:82
+#: app/gallery/views.py:84
 #, python-format
 msgid "'%(album)s' album deleted"
 msgstr ""
 
-#: app/gallery/views.py:93
+#: app/gallery/views.py:95
 #, python-format
 msgid "'%(album)s' album refreshed"
 msgstr ""
 
-#: app/gallery/views.py:104
+#: app/gallery/views.py:106
 #, python-format
 msgid "Directory '%(directory)s' refreshed"
 msgstr ""
 
-#: app/gallery/views.py:117
+#: app/gallery/views.py:119
 #, python-format
 msgid "'%(directory)s' directory deleted from '%(album)s'"
 msgstr ""
@@ -63,16 +63,20 @@ msgstr ""
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr ""
 
-#: app/templates/_macros.html:45
+#: app/templates/_macros.html:50
 msgid "Cancel"
 msgstr ""
 
-#: app/templates/_macros.html:46 app/templates/album.html:18
-#: app/templates/edit_album.html:36
+#: app/templates/_macros.html:51 app/templates/album.html:18
+#: app/templates/edit_album.html:41
 msgid "Delete"
 msgstr ""
 
-#: app/templates/album.html:17 app/templates/album.html:56
+#: app/templates/album.html:15
+msgid "Album"
+msgstr ""
+
+#: app/templates/album.html:17 app/templates/album.html:60
 msgid "Edit"
 msgstr ""
 
@@ -83,35 +87,35 @@ msgid ""
 "delete all the inside directory and photos"
 msgstr ""
 
-#: app/templates/album.html:19 app/templates/edit_album.html:35
+#: app/templates/album.html:19 app/templates/edit_album.html:40
 msgid "Refresh"
 msgstr ""
 
-#: app/templates/album.html:54
+#: app/templates/album.html:58
 msgid "Information"
 msgstr ""
 
-#: app/templates/album.html:55
+#: app/templates/album.html:59
 msgid "Open"
 msgstr ""
 
-#: app/templates/album.html:57
+#: app/templates/album.html:61
 msgid "Download"
 msgstr ""
 
-#: app/templates/album.html:64 app/templates/edit_album.html:14
+#: app/templates/album.html:68 app/templates/edit_album.html:14
 msgid "General"
 msgstr ""
 
-#: app/templates/album.html:65
+#: app/templates/album.html:69
 msgid "Exif"
 msgstr ""
 
-#: app/templates/album.html:69
+#: app/templates/album.html:73
 msgid "General Information"
 msgstr ""
 
-#: app/templates/album.html:72
+#: app/templates/album.html:76
 msgid "Exif Information"
 msgstr ""
 
@@ -135,7 +139,7 @@ msgstr ""
 msgid "last updated"
 msgstr ""
 
-#: app/templates/edit_album.html:36
+#: app/templates/edit_album.html:41
 #, python-format
 msgid ""
 "Are you sure you want to delete %(directory)s directory? Removing a "
