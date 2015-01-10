@@ -17,7 +17,7 @@
         <a href="{{ url_for('gallery.album', id=album.id) }}">
             <img class="img-responsive" src="
             {% if album.photos.count() != 0 %}
-	    {{ url_for('gallery.photo', id=album.photos.first().id, width='600', height='400') }}
+	    {{ url_for('gallery.photo_thumbnail', id=album.photos.first().id, width='600', height='400') }}
             {% else %}
             http://placehold.it/600x400
             {% endif %}

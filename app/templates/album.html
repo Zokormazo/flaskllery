@@ -26,7 +26,7 @@
 {% for photo in photos.items %}
 <div class="col-md-3 portfolio-item thumb">
     <a href="#" class="thumbnail" data-toggle="modal" data-target="#photoModal" data-id="{{ photo.id }}">
-        <img class="img-responsive" src="{{ url_for('gallery.photo', id=photo.id, width='450', height='300') }}">
+        <img class="img-responsive" src="{{ url_for('gallery.photo_thumbnail', id=photo.id, width='450', height='300') }}">
     </a>
 </div>
 {% if loop.index is divisibleby 4 %}
@@ -40,8 +40,8 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="row text-center">
-                    <img class="img-responsive photo" src="http://placehold.it/900x600">
+                <div class="row">
+                    <img class="img-responsive center-block photo" src="http://placehold.it/900x600">
                 </div>
                 <div class="row">
                     <div class="col-md-8">
@@ -70,10 +70,41 @@
                     </ul>
                     <div id="ImageInfoTabContent" class="tab-content">
                         <div class="tab-pane fade in active" id="general">
-                            <p>{{_('General Information') }}</p>
+                            <div class="row">
+                                <p>{{_('General Information') }}</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>{{ _('File:') }} <span id="image-file">-</span></p>
+                                    <p>{{ _('Size:') }} <span id="image-size">-</span></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>{{ _('Format:') }} <span id="image-format">-</span></p>
+                                    <p>{{ _('Resolution:') }} <span id="image-resolution">-</span></p>
+                                    <p>{{ _('Mode:') }} <span id="image-mode">-</span></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="exif">
-                            <p>{{ _('Exif Information') }}</p>
+                            <div class="row">
+                                <p>{{_('Exif Information') }}</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>{{ _('Taken at:') }} <span id="exif-taken-at">-</span></p>
+                                    <p>{{ _('Camera:') }} <span id="exif-camera-make">-</span> <span id="exif-camera-model"></span></p>
+                                    <p>{{ _('Orientation:') }} <span id="exif-orientation">-</span></span></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>{{ _('Focal Length:') }} <span id="exif-focal-length">-</span></p>
+                                    <p>{{ _('Aperture:') }} <span id="exif-aperture">-</span></p>
+                                    <p>{{ _('ISO Speed') }} <span id="exif-iso">-</span></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>{{ _('Latitude') }} <span id="exif-latitude">-</span></p>
+                                    <p>{{ _('Longitude') }} <span id="exif-longitude">-</span></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

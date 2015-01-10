@@ -129,12 +129,12 @@ def photo_file(id):
 
 @blueprint.route('/photo/thumb/<int:id>/<int:width>x<int:height>')
 @login_required
-def photo(id, width, height):
+def photo_thumbnail(id, width, height):
 	'''
 	Return photo thumbnail of given dimension
 	'''
 	photo = Photo.query.get(id)
-	return photo.thumb(width,height)
+	return send_file(photo.thumbnail_path(width,height))
 
 @blueprint.route('/json/photo/<int:id>')
 @login_required
@@ -144,3 +144,15 @@ def json_photo(id):
 	'''
 	photo = Photo.query.get(id)
 	return jsonify(photo.json())
+
+@blueprint.route('/json/photo/<int:id>/exif')
+@login_required
+def json_photo_exif(id):
+	'''
+	Returns exif info in json format
+	'''
+	photo = Photo.query.get(id)
+	if photo.exif_data:
+		return jsonify(photo.exif_data.json())
+	else:
+		abort(404)
