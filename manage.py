@@ -2,7 +2,7 @@
 from app import create_app, db
 from flask.ext.script import Manager, Shell, Command, Option
 from flask.ext.migrate import Migrate, MigrateCommand
-from app.models import User, Album, Directory, Photo
+from app.models import User, Role, Album, Directory, Photo, ExifData
 import os
 
 if os.path.exists('.env'):
@@ -17,8 +17,9 @@ manager = Manager(app)
 migrate = Migrate(app, db)
 
 def make_shell_context():
-	return dict(app=app, db=db, User=User, Album=Album,
-			Directory=Directory, Photo=Photo)
+	return dict(app=app, db=db, User=User, Role=Role,
+			Album=Album, Directory=Directory,
+			Photo=Photo, ExifData=ExifData)
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
 
