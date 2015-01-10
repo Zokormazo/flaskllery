@@ -27,8 +27,22 @@ class User(db.Model, UserMixin):
 	last_seen = db.Column(db.DateTime)
 
 	# Relationships
+	roles = db.relationship('Role', secondary='user_roles', backref=db.backref('users', lazy='dynamic'))
 	albums = db.relationship('Album', backref='author', lazy='dynamic', cascade='save-update, merge, delete, delete-orphan')
 	photos = db.relationship('Photo', backref='author', lazy='dynamic', cascade='save-update, merge, delete, delete-orphan')
+
+# Role data model
+class Role(db.Model):
+	id = db.Column(db.Integer(), primary_key = True)
+
+	name = db.Column(db.String(50), unique=True)
+
+# UserRole data model
+class UserRoles(db.Model):
+	id = db.Column(db.Integer(), primary_key = True)
+
+	user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+	role_id = db.Column(db.Integer(), db.ForeignKey('role.id'))
 
 class Album(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
