@@ -1,0 +1,26 @@
+{% extends "member_base.html" %}
+{% from "_macros.html" import render_delete_modal %}
+
+{% block page_header %}
+<h1>{{ photo.title }}
+    <br />
+    <small>{{ photo.caption }}</small>
+</h1>
+{% endblock %}
+
+{% block page_navbar %}
+<li class="dropdown">
+    <a href="#" class="dropwdown-toggle" data-toggle="dropdown">{{ _('Photo') }}</a>
+    <ul class="dropdown-menu">
+        <li><a href="{{ url_for('gallery.edit_photo', id=photo.id) }}">{{ _('Edit') }}</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#deleteModal" data-message="{{ _('Are you sure you want to remove %(photo)s photo?', photo=photo.title) }}" data-url="{{ url_for('gallery.delete_photo', id=photo.id) }}">{{ _('Delete') }}</a></li>
+	<li><a href="{{ url_for('gallery.update_photo', id=photo.id) }}">{{ _('Update') }}</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block page_content %}
+<div class="row">
+    <img class="img-responsive block-center" src="{{ url_for('gallery.photo_thumbnail', id=photo.id, width='1050', height='700') }}">
+</div>
+{% endblock %}

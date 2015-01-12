@@ -59,7 +59,6 @@ class Album(db.Model):
 
 	# Relationships
 	directories = db.relationship('Directory', backref='album', lazy='dynamic', cascade='merge, save-update, delete, delete-orphan')
-	photos = db.relationship('Photo', backref='album', lazy='dynamic', cascade='merge, save-update, delete, delete-orphan')
 
 	# Refresh directories
 	def refresh(self):
@@ -90,7 +89,7 @@ class Directory(db.Model):
 					im = Image.open(file_path)
 					photo = Photo.query.filter_by(path = file_path).first()
 					if photo is None:
-						photo = Photo( path = file_path, updated_at = datetime.utcnow(), album = self.album, directory_id = self.id, author_id = self.album.author.id )
+						photo = Photo( path = file_path, updated_at = datetime.utcnow(), directory_id = self.id, author_id = self.album.author.id )
 					photo.update()
 
 				except IOError:
@@ -105,7 +104,6 @@ class Photo(db.Model):
 
 	# Photo information
 	path = db.Column(db.String(255), nullable = False, index = True)
-	album_id = db.Column('album', db.Integer, db.ForeignKey('album.id'), nullable = False)
 	directory_id = db.Column('directory', db.Integer, db.ForeignKey('directory.id'), nullable = False)
 	author_id = db.Column('author', db.Integer, db.ForeignKey('user.id'), nullable = False)
 	title = db.Column(db.String(64))

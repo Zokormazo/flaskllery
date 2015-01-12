@@ -1,0 +1,16 @@
+{% extends "member_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% from "_macros.html" import render_delete_modal %}
+
+{% block page_header %}
+<h1>{{ _('Edit Photo') }}
+    <br />
+    <small>{{ photo.title }}</small>
+</h1>
+{% endblock %}
+
+{% block page_content %}
+<div class="row">
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}

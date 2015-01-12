@@ -16,8 +16,8 @@
     <div class="col-md-4 portfolio-item">
         <a href="{{ url_for('gallery.album', id=album.id) }}">
             <img class="img-responsive" src="
-            {% if album.photos.count() != 0 %}
-	    {{ url_for('gallery.photo_thumbnail', id=album.photos.first().id, width='600', height='400') }}
+            {% if album.directories  and album.directories.first().photos and album.directories.first().photos.first() %}
+	    {{ url_for('gallery.photo_thumbnail', id=album.directories.first().photos.first().id, width='600', height='400') }}
             {% else %}
             http://placehold.it/600x400
             {% endif %}
