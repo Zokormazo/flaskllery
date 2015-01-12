@@ -4,6 +4,3 @@ __pycache__/
 
 # Flask virtualenv
 flask/
-
-# Site configuration
-config.py
