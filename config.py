@@ -7,12 +7,12 @@ class Config:
 	SECRET_KEY = 'This is an insecure secret key'
 
 	# flask-mail
-	MAIL_SERVER = ''
-	MAIL_PORT = 
-	MAIL_USE_SSL = False
+	MAIL_SERVER = 'smtp.googlemail.com'
+	MAIL_PORT = '587'
+	MAIL_USE_TLS = True
 	MAIL_DEFAULT_SENDER = ''
-	MAIL_USERNAME = None
-	MAIL_PASSWORD = None
+	MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+	MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 
 	# flask-user
 	USER_ENABLE_EMAIL = True
@@ -22,7 +22,7 @@ class Config:
 	USER_APP_NAME = 'Flaskllery'
 
 	# administrator list
-	ADMINS = []
+	ADMINS = os.environ.get('ADMINS')
 
 	LANGUAGES = {
 		'en': 'English',
