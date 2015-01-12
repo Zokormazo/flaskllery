@@ -66,7 +66,7 @@ class ProductionConfig(Config):
 		secure = None
 		if getattr(self, 'MAIL_USERNAME', None) is not None:
 			credentials = (self.MAIL_USERNAME, self.MAIL_PASSWORD)
-		if getattr(cls, 'MAIL_USE_TLS', None):
+		if getattr(self, 'MAIL_USE_TLS', None):
 			secure = ()
 		mail_handler = SMTPHandler(
 			mailhost=(self.MAIL_SERVER, self.MAIL_PORT),
