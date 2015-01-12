@@ -11,6 +11,7 @@ if os.path.exists('.env'):
 		var = line.strip().split('=')
 		if len(var) == 2:
 			os.environ[var[0]] = var[1]
+			os.putenv(var[0], var[1])
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
