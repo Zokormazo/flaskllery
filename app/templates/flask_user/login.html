@@ -1,32 +1,26 @@
 {% extends "flask_user/public_base.html" %}
 
-{% block content %}
-{{ super() }}
-{% from "flask_user/_macros.html" import render_field, %}
-<form action="" method="POST" class="form" role="form">
-    {{ form.hidden_tag() }}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-5 col-md-3">
-                <div class="form-login">
-                    <h4>{%trans%}Sign in{%endtrans%}</h4>
-                    {# Username or Email field #}
-                    {% set field = form.username if user_manager.enable_username else form.email %}
-                    {{ field(placeholder=field.label.text, class="form-control input-sm chat-input") }}
-                    </br>
-                    {# Password field #}
-                    {{ form.password(placeholder=form.password.label.text, class="form-control input-sm chat-input") }}
-                    </br>
-                    {# Remember me #}
-                    {% if user_manager.enable_remember_me %}
-                    {{ login_form.remember_me(type="checkbox") }} {{ _('Remember me') }}
-                    </br>
-                    {% endif %}
-                    <input type="submit" value="{{ _('Login') }}"> 
-                    </br>
-                </div>
-            </div>
+{% block page_content %}
+<div class="container">
+    <form action="" method="POST" class="form form-signin" role="form">
+        {{ form.hidden_tag() }}
+        <h2 class="form-signin-heading">{%trans%}Sign in{%endtrans%}</h2>
+        {# Username or Email field #}
+        {% set field = form.username if user_manager.enable_username else form.email %}
+        <label for="inputEmail" class="sr-only">{{ field.label.text }}</label>
+        {{ field(placeholder=field.label.text, class="form-control", id="inputEmail") }}
+        {# Password field #}
+        <label for="inputPassword" class="sr-only">{{ form.password.label.text }}</label>
+        {{ form.password(placeholder=form.password.label.text, class="form-control", id="inputPassword") }}
+        {# Remember me #}
+        {% if user_manager.enable_remember_me %}
+        <div class="checkbox">
+            <label>
+                {{ login_form.remember_me(type="checkbox") }} {{ _('Remember me') }}
+            </label>
         </div>
-    </div>
-</form>
+        {% endif %}
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="{{ _('Login') }}">
+    </form>
+</div>
 {% endblock %}
