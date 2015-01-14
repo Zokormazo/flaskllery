@@ -3,6 +3,10 @@
 {% from "_macros.html" import render_pagination %}
 {% from "_macros.html" import render_delete_modal %}
 
+{% block metas %}
+<meta name="album-id" content="{{ album.id }}" />
+{% endblock %}
+
 {% block page_header %}
 <h1>{{ album.title }}
     <br />
@@ -134,13 +138,14 @@
 <script>
 // Photo modal
 $(document).ready(function(){
-    loadGallery();
+    var album_id = $("meta[name=album-id]")
+    loadGallery(album_id.attr("content"));
 
-    function loadGallery(album_id=1){
+    function loadGallery(id){
         var photos;
         var current_image_index;
 
-        $.getJSON('/gallery/json/album/' + album_id + '/photos', function(data,status) {
+        $.getJSON('/gallery/json/album/' + id + '/photos', function(data,status) {
            photos = data
         });
 
