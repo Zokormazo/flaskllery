@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-01-08 12:45+0100\n"
+"POT-Creation-Date: 2015-01-14 11:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,34 +17,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: app/gallery/views.py:33
+#: app/gallery/forms.py:9 app/gallery/forms.py:18
+msgid "Add"
+msgstr ""
+
+#: app/gallery/forms.py:14 app/gallery/forms.py:23 app/templates/album.html:17
+#: app/templates/album.html:60 app/templates/photo.html:15
+msgid "Edit"
+msgstr ""
+
+#: app/gallery/views.py:34
 #, python-format
 msgid "New album '%(album)s' added"
 msgstr ""
 
-#: app/gallery/views.py:62
+#: app/gallery/views.py:63
 #, python-format
-msgid "Album '%(album)s' edited"
+msgid "'%(album)s' album edited"
 msgstr ""
 
-#: app/gallery/views.py:84
+#: app/gallery/views.py:85
 #, python-format
 msgid "'%(album)s' album deleted"
 msgstr ""
 
-#: app/gallery/views.py:95
+#: app/gallery/views.py:96
 #, python-format
 msgid "'%(album)s' album refreshed"
 msgstr ""
 
-#: app/gallery/views.py:106
+#: app/gallery/views.py:107
 #, python-format
 msgid "Directory '%(directory)s' refreshed"
 msgstr ""
 
-#: app/gallery/views.py:119
+#: app/gallery/views.py:120
 #, python-format
 msgid "'%(directory)s' directory deleted from '%(album)s'"
+msgstr ""
+
+#: app/gallery/views.py:141
+#, python-format
+msgid "'%(photo)s' updated on '%(album)s'"
+msgstr ""
+
+#: app/gallery/views.py:155
+#, python-format
+msgid "Photo '%(photo)s' edited"
 msgstr ""
 
 #: app/templates/404.html:5
@@ -68,16 +87,12 @@ msgid "Cancel"
 msgstr ""
 
 #: app/templates/_macros.html:51 app/templates/album.html:18
-#: app/templates/edit_album.html:41
+#: app/templates/edit_album.html:41 app/templates/photo.html:16
 msgid "Delete"
 msgstr ""
 
 #: app/templates/album.html:15
 msgid "Album"
-msgstr ""
-
-#: app/templates/album.html:17 app/templates/album.html:60
-msgid "Edit"
 msgstr ""
 
 #: app/templates/album.html:18
@@ -111,12 +126,64 @@ msgstr ""
 msgid "Exif"
 msgstr ""
 
-#: app/templates/album.html:73
+#: app/templates/album.html:74
 msgid "General Information"
 msgstr ""
 
-#: app/templates/album.html:76
+#: app/templates/album.html:78
+msgid "File:"
+msgstr ""
+
+#: app/templates/album.html:79
+msgid "Size:"
+msgstr ""
+
+#: app/templates/album.html:82
+msgid "Format:"
+msgstr ""
+
+#: app/templates/album.html:83
+msgid "Resolution:"
+msgstr ""
+
+#: app/templates/album.html:84
+msgid "Mode:"
+msgstr ""
+
+#: app/templates/album.html:90
 msgid "Exif Information"
+msgstr ""
+
+#: app/templates/album.html:94
+msgid "Taken at:"
+msgstr ""
+
+#: app/templates/album.html:95
+msgid "Camera:"
+msgstr ""
+
+#: app/templates/album.html:96
+msgid "Orientation:"
+msgstr ""
+
+#: app/templates/album.html:99
+msgid "Focal Length:"
+msgstr ""
+
+#: app/templates/album.html:100
+msgid "Aperture:"
+msgstr ""
+
+#: app/templates/album.html:101
+msgid "ISO Speed"
+msgstr ""
+
+#: app/templates/album.html:104
+msgid "Latitude"
+msgstr ""
+
+#: app/templates/album.html:105
+msgid "Longitude"
 msgstr ""
 
 #: app/templates/edit_album.html:6
@@ -146,6 +213,10 @@ msgid ""
 "directory will remove all the photos fetched from it"
 msgstr ""
 
+#: app/templates/edit_photo.html:6
+msgid "Edit Photo"
+msgstr ""
+
 #: app/templates/index.html:6
 msgid "Albums"
 msgstr ""
@@ -166,6 +237,19 @@ msgstr ""
 msgid "Log In"
 msgstr ""
 
+#: app/templates/photo.html:13
+msgid "Photo"
+msgstr ""
+
+#: app/templates/photo.html:16
+#, python-format
+msgid "Are you sure you want to remove %(photo)s photo?"
+msgstr ""
+
+#: app/templates/photo.html:17
+msgid "Update"
+msgstr ""
+
 #: app/templates/flask_user/change_password.html:4
 msgid "Change Password"
 msgstr ""
@@ -174,37 +258,27 @@ msgstr ""
 msgid "Change Username"
 msgstr ""
 
-#: app/templates/flask_user/forgot_password.html:5
+#: app/templates/flask_user/forgot_password.html:7
 msgid "Forgot Password"
 msgstr ""
 
-#: app/templates/flask_user/login.html:12
-#: app/templates/flask_user/login_or_register.html:9
+#: app/templates/flask_user/login.html:7
 msgid "Sign in"
 msgstr ""
 
-#: app/templates/flask_user/login.html:22
+#: app/templates/flask_user/login.html:19
 msgid "Remember me"
 msgstr ""
 
-#: app/templates/flask_user/login.html:25
+#: app/templates/flask_user/login.html:23
 msgid "Login"
 msgstr ""
 
-#: app/templates/flask_user/login_or_register.html:34
-msgid "Forgot your Password?"
-msgstr ""
-
-#: app/templates/flask_user/login_or_register.html:41
-#: app/templates/flask_user/register.html:5
+#: app/templates/flask_user/register.html:8
 msgid "Register"
 msgstr ""
 
-#: app/templates/flask_user/manage_emails.html:5
-msgid "Manage Emails"
-msgstr ""
-
-#: app/templates/flask_user/register.html:21
+#: app/templates/flask_user/register.html:30
 msgid "Already registered? Sign in."
 msgstr ""
 
@@ -212,7 +286,7 @@ msgstr ""
 msgid "Resend Confirmation Email"
 msgstr ""
 
-#: app/templates/flask_user/reset_password.html:5
+#: app/templates/flask_user/reset_password.html:7
 msgid "Reset Password"
 msgstr ""
 
