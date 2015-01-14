@@ -6,6 +6,7 @@ from app.gallery.forms import NewAlbumForm, EditAlbumForm, AddDirectoryForm, Edi
 from app import db
 from PIL import Image
 from . import blueprint
+import json
 import StringIO
 
 @blueprint.route('/')
@@ -184,6 +185,18 @@ def photo_thumbnail(id, width, height):
 	'''
 	photo = Photo.query.get_or_404(id)
 	return send_file(photo.thumbnail_path(width,height))
+
+@blueprint.route('/json/album/<int:id>/photos')
+@login_required
+def json_album_photos(id):
+	'''
+	Returns an array of photo ids that belongs to Album
+	'''
+	photos = Photo.query.with_entities(Photo.id).join(Directory).filter(Directory.album_id == id).all()
+	if photos:
+		return json.dumps(zip(*photos))[1:-1]
+	else:
+		Abort(404)
 
 @blueprint.route('/json/photo/<int:id>')
 @login_required

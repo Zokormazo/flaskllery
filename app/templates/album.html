@@ -109,6 +109,16 @@
                     </div>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left prev" id="btn-prev">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                    Previous
+                </button>
+                <button type="button" class="btn btn-primary next" id="btn-next">
+                    Next
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -117,4 +127,100 @@
 {% block page_modals %}
 {{ super() }}
 {{ render_delete_modal() }}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+// Photo modal
+$(document).ready(function(){
+    loadGallery();
+
+    function loadGallery(album_id=1){
+        var photos;
+        var current_image_index;
+
+        $.getJSON('/gallery/json/album/' + album_id + '/photos', function(data,status) {
+           photos = data
+        });
+
+        function loadPhoto(id){
+            current_image_index = photos.indexOf(id)
+            modal = $('#photoModal')
+            modal.data('id', id)
+            modal.find('.photo').attr('src', 'http://placehold.it/900x600&text=loading...' + id + '/900x600')
+            modal.find('.btn-open').attr('href', '/gallery/photo/view/' + id)
+            modal.find('.btn-edit').attr('href', '/gallery/photo/edit/' + id)
+            modal.find('.btn-download').attr('href', '/gallery/photo/raw/' + id)
+            $.getJSON('/gallery/json/photo/' + id, function(data,status) {
+                if (data.title != null){
+                    $('#image-title').text(data.title)
+                }
+                else {
+                    $('#image-title').text('')
+                }
+                if (data.caption != null){
+                    $('#image-caption').text(data.caption)
+                }
+                else {
+                    $('#image-caption').text('')
+                }
+                if (data.filename != null){
+                    $('#image-file').text(data.filename)
+                }
+                else {
+                    $('#image-file').text('-')
+                }
+                if (data.size != null){
+                    $('#image-size').text(data.size)
+                }
+                else {
+                    $('#image-size').text('-')
+                }
+                if (data.format != null){
+                    $('#image-format').text(data.format)
+                }
+                else {
+                    $('#image-format').text('-')
+                }
+                if (data.width != null && data.height != null){
+                    $('#image-resolution').text(data.width + 'x' + data.height)
+                }
+                else {
+                    $('#image-resolution').text('-')
+                }
+                if (data.mode != null){
+                    $('#image-mode').text(data.mode)
+                }
+                else {
+                    $('#image-mode').text('-')
+                }
+            })
+            modal.find('.photo').attr('src', '/gallery/photo/thumb/' + id + '/900x600')
+        }
+
+        $('#photoModal').on('show.bs.modal', function (event) {
+            var trigger = $(event.relatedTarget)
+            var id = trigger.data('id')
+            loadPhoto(id)
+        })
+
+        $('.btn-more-info').on('click', function(event) {
+            event.preventDefault();
+            $( '.more-info' ).toggleClass( "hide" );
+        })
+
+        $('#btn-next').on('click', function(event) {
+            loadPhoto(photos[current_image_index + 1])
+        })
+
+        $('#btn.prev').on('click', function(event) {
+            loadPhoto(photos[current_image_index - 1])
+        })
+    }
+});
+
+
+// End Photo modal
+</script>
 {% endblock %}
