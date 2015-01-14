@@ -45,7 +45,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row">
-                    <img class="img-responsive center-block photo" src="http://placehold.it/900x600">
+                    <img class="img-responsive center-block photo" src="http://placehold.it/900x600&text=loading...">
                 </div>
                 <div class="row">
                     <div class="col-md-8">
@@ -149,8 +149,13 @@ $(document).ready(function(){
            photos = data
         });
 
+        function preloadPhoto(id){
+            $('<img/>')[0].src = '/gallery/photo/thumb/' + id + '/900x600'
+        }
+
         function loadPhoto(id){
             current_image_index = photos.indexOf(id)
+            preloadPhoto(id)
             modal = $('#photoModal')
             modal.data('id', id)
             modal.find('.photo').attr('src', 'http://placehold.it/900x600&text=loading...' + id + '/900x600')
@@ -258,6 +263,21 @@ $(document).ready(function(){
                 }
             });
             modal.find('.photo').attr('src', '/gallery/photo/thumb/' + id + '/900x600')
+            if (current_image_index == photos.length - 1)
+            {
+                $('#btn-next').prop('disabled', true)
+            }
+            else {
+                preloadPhoto(photos[current_image_index + 1])
+                $('#btn-next').prop('disabled', false)
+            }
+            if (current_image_index == 0){
+                $('#btn-prev').prop('disabled', true)
+            }
+            else {
+                preloadPhoto(photos[current_image_index - 1])
+                $('#btn-prev').prop('disabled', false)
+            }
         }
 
         $('#photoModal').on('show.bs.modal', function (event) {
@@ -275,7 +295,7 @@ $(document).ready(function(){
             loadPhoto(photos[current_image_index + 1])
         })
 
-        $('#btn.prev').on('click', function(event) {
+        $('#btn-prev').on('click', function(event) {
             loadPhoto(photos[current_image_index - 1])
         })
     }
