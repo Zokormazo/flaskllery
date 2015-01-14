@@ -153,7 +153,7 @@ def edit_photo(id):
 		db.session.add(photo)
 		db.session.commit()
 		flash(gettext('Photo \'%(photo)s\' edited', photo=photo.path))
-		return redirect(url_for('edit_photo', id=photo.id))
+		return redirect(url_for('.photo', id=photo.id))
 	form.title.data = photo.title
 	form.caption.data = photo.caption
 	return render_template('edit_photo.html', photo=photo, form=form)
