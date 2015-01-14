@@ -201,6 +201,62 @@ $(document).ready(function(){
                     $('#image-mode').text('-')
                 }
             })
+            $.getJSON('/gallery/json/photo/' + id + '/exif', function(data,status) {
+                if (data.aperture != null){
+                    $('#exif-aperture').text(data.aperture[0] + '/' + data.aperture[1])
+                }
+                else {
+                    $('#exif-aperture').text('-')
+                }
+                if (data.camera_make != null){
+                    $('#exif-camera-make').text(data.camera_make)
+                }
+                else {
+                    $('#exif-camera-make').text('-')
+                }
+                if (data.camera_model != null){
+                    $('#exif-camera-model').text(data.camera_model)
+                }
+                else {
+                    $('#exif-camera-model').text('-')
+                }
+                if (data.focal_length){
+                     $('#exif-focal-length').text(data.focal_length[0] + '/' + data.focal_length[1])
+                }
+                else {
+                    $('#exif-focal-length').text('-')
+                }
+                if (data.iso){
+                    $('#exif-iso').text(data.iso)
+                }
+                else {
+                    $('#exif-iso').text('-')
+                }
+                if (data.taken_at){
+                    $('#exif-taken-at').text(data.taken_at)
+                }
+                else {
+                    $('#exif-taken-at').text('-')
+                }
+                if (data.orientation){
+                    $('#exif-orientation').text(data.orientarion)
+                }
+                else {
+                    $('#exif-orientation').text('-')
+                }
+                if (data.latitude){
+                    $('#exif-latitude').text(data.latitude)
+                }
+                else {
+                    $('#exif-latitud').text('-')
+                }
+                if (data.longitude){
+                    $('#exif-longitude').text(data.longitude)
+                }
+                else {
+                    $('#exif-longitude').text('-')
+                }
+            });
             modal.find('.photo').attr('src', '/gallery/photo/thumb/' + id + '/900x600')
         }
 
