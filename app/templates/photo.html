@@ -1,10 +1,21 @@
 {% extends "member_base.html" %}
 {% from "_macros.html" import render_delete_modal %}
 
+{% block metas %}
+{{ super() }}
+<meta name="photo-id" content="{{ photo.id }}" />
+<meta name="album-id" content="{{ photo.directory.album.id }}" />
+{% endblock %}
+
 {% block page_header %}
-<h1>{{ photo.title }}
+<h1>
+    {% if photo.title %}
+    {{ photo.title }}
+    {% endif %}
     <br />
+    {% if photo.caption %}
     <small>{{ photo.caption }}</small>
+    {% endif %}
 </h1>
 {% endblock %}
 
@@ -21,6 +32,107 @@
 
 {% block page_content %}
 <div class="row">
-    <img class="img-responsive block-center" src="{{ url_for('gallery.photo_thumbnail', id=photo.id, width='1050', height='700') }}">
+    <div class="col-md-8">
+        <img class="img-responsive block-center" src="{{ url_for('gallery.photo_thumbnail', id=photo.id, width='900', height='600') }}">
+    </div>
+    <div class="col-md-4">
+        <h4>{{ _('General Information') }}</h4>
+        <hr />
+        <p>{{ _('File:') }} {{ photo.filename() }}</p>
+        <p>{{ _('Size:') }} {{ photo.size }}</p>
+        <p>{{ _('Format:') }} {{ photo.format }}</span></p>
+        <p>{{ _('Resolution:') }} {{ photo.width }}x{{ photo.height }}</p>
+        <h4 class="exif-heading">{{ _('Exif Information') }}</h4>
+        <hr />
+        <p>{{ _('Taken at:') }}
+        {% if photo.exif_data.taken_at %}{{ photo.exif_data.taken_at }}
+        {% else %}-
+        {% endif %}
+        </p>
+        <p>{{ _('Camera:') }}
+        {% if photo.exif_data.camera_make %}{{ photo.exif_data.camera_make }}
+        {% else %}-
+        {% endif %}
+        {% if photo.exif_data.camera_model %}{{ photo.exif_data.camera_model }}
+        {% else %}-
+        {% endif %}
+        </p>
+        <p>{{ _('Orientation:') }}
+        {% if photo.exif_data.orientation %}{{ photo.exif_data.orientation }}
+        {% else %}-
+        {% endif %}
+        </p>
+        <p>{{ _('Focal Length:') }}
+        {% if photo.exif_data.focal_length %}{{ photo.exif_data.focal_length }}
+        {% else %}-
+        {% endif %}
+        </p>
+        <p>{{ _('Aperture:') }}
+        {% if photo.exif_data.aperture %}{{ photo.exif_data.aperture }}
+        {% else %}-
+        {% endif %}
+        </p>
+        <p>{{ _('ISO Speed') }}
+        {% if photo.exif_data.iso %}{{ photo.exif_data.iso }}
+        {% else %}-
+        {% endif %}
+        </p>
+        <p>{{ _('Latitude') }}
+        {% if photo.exif_data.latitude %}{{ photo.exif_data.latitude }}
+        {% else %}-
+        {% endif %}
+        </p>
+        <p>{{ _('Longitude') }}
+        {% if photo.exif_data.longitude %}{{ photo.exif_data.longitude }}
+        {% else %}-
+        {% endif %}
+        </p>
+    </div>
 </div>
+<hr />
+<div class="row next-prev">
+    <button type="button" class="btn btn-default pull-left prev" id="btn-prev" disabled="disabled">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        {{ _('Previous') }}
+    </button>
+    <button type="button" class="btn btn-primary pull-right next" id="btn-next" disabled="disabled">
+        {{ _('Next') }}
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+$(document).ready(function(){
+    var album_id = $("meta[name=album-id]").attr("content")
+    var photo_id = parseInt($("meta[name=photo-id]").attr("content"))
+    loadGallery(album_id)
+
+    function loadGallery(id){
+        var photos;
+        var current_image_index;
+
+        $.getJSON('/gallery/json/album/' + id + '/photos', function(data,status) {
+            photos = data
+            current_image_index = photos.indexOf(photo_id)
+            if (current_image_index != 0) {
+                $('#btn-prev').prop('disabled', false)
+            }
+            if (current_image_index != photos.length -1) {
+                $('#btn-next').prop('disabled', false)
+            }
+        });
+
+        $('#btn-next').on('click', function(event) {
+              location.href='/gallery/photo/view/' + photos[current_image_index + 1]
+        });
+
+        $('#btn-prev').on('click', function(event) {
+              location.href='/gallery/photo/view/' + photos[current_image_index - 1]
+        });
+    }
+});
+</script>
 {% endblock %}

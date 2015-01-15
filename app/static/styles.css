@@ -13,3 +13,11 @@ body {
 .portfolio-item {
     margin-bottom: 25px;
 }
+
+.exif-heading {
+    padding-top: 25px;
+}
+
+.next-prev {
+    padding-top: 25px;
+}

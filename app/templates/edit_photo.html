@@ -2,15 +2,73 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% from "_macros.html" import render_delete_modal %}
 
+{% block metas %}
+{{ super() }}
+<meta name="photo-id" content="{{ photo.id }}" />
+<meta name="album-id" content="{{ photo.directory.album.id }}" />
+{% endblock %}
+
 {% block page_header %}
 <h1>{{ _('Edit Photo') }}
     <br />
+    {% if photo.title %}
     <small>{{ photo.title }}</small>
+    {% endif %}
 </h1>
 {% endblock %}
 
 {% block page_content %}
 <div class="row">
+    <div class="col-md-8">
+        <img class="img-responsive block-center" src="{{ url_for('gallery.photo_thumbnail', id=photo.id, width='900', height='600') }}">
+    </div>
+    <div class="col-md-4">
     {{ wtf.quick_form(form) }}
+    </div>
 </div>
+<div class="row next-prev">
+    <button type="button" class="btn btn-default pull-left prev" id="btn-prev" disabled="disabled">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        {{ _('Previous') }}
+    </button>
+    <button type="button" class="btn btn-primary pull-right next" id="btn-next" disabled="disabled">
+        {{ _('Next') }}
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+$(document).ready(function(){
+    var album_id = $("meta[name=album-id]").attr("content")
+    var photo_id = parseInt($("meta[name=photo-id]").attr("content"))
+    loadGallery(album_id)
+
+    function loadGallery(id){
+        var photos;
+        var current_image_index;
+
+        $.getJSON('/gallery/json/album/' + id + '/photos', function(data,status) {
+            photos = data
+            current_image_index = photos.indexOf(photo_id)
+            if (current_image_index != 0) {
+                $('#btn-prev').prop('disabled', false)
+            }
+            if (current_image_index != photos.length -1) {
+                $('#btn-next').prop('disabled', false)
+            }
+        });
+
+        $('#btn-next').on('click', function(event) {
+              location.href='/gallery/photo/edit/' + photos[current_image_index + 1]
+        });
+
+        $('#btn-prev').on('click', function(event) {
+              location.href='/gallery/photo/edit/' + photos[current_image_index - 1]
+        });
+    }
+});
+</script>
 {% endblock %}
