@@ -7,3 +7,6 @@ flask/
 
 # .env
 .env
+
+# photos directory
+photos/
