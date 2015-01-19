@@ -1,7 +1,13 @@
 from flask.ext.wtf import Form
 from flask.ext.babel import gettext
 from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, ValidationError
+import os
+
+def directory_path_validator(form, field):
+	path = field.data
+	if not os.path.isdir(path):
+		raise ValidationError(gettext('Path is not a valid directory. Please try with a valid directory path'))
 
 class NewAlbumForm(Form):
 	title = StringField(gettext('Title'), validators=[DataRequired(), Length(3, 64)])
@@ -14,7 +20,7 @@ class EditAlbumForm(Form):
 	submit = SubmitField(gettext('Edit'))
 
 class AddDirectoryForm(Form):
-	path = StringField(gettext('Path'))
+	path = StringField(gettext('Path'), validators=[DataRequired(), directory_path_validator])
 	submit = SubmitField(gettext('Add'))
 
 class EditPhotoForm(Form):
