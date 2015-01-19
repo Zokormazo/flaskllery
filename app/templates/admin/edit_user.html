@@ -1,0 +1,8 @@
+{% extends "admin/member_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block admin_content %}
+<h2>{{ _('Edit user: %(user)s', user=user.username) }}</h2>
+<hr />
+{{ wtf.quick_form(form) }}
+{% endblock %}

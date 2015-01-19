@@ -40,4 +40,7 @@ def create_app(config_name):
 	from app.gallery import blueprint as gallery_blueprint
 	app.register_blueprint(gallery_blueprint, url_prefix='/gallery')
 
+	from app.admin import blueprint as admin_blueprint
+	app.register_blueprint(admin_blueprint, url_prefix='/admin')
+
 	return app

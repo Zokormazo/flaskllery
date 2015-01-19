@@ -1,0 +1,35 @@
+{% extends "admin/member_base.html" %}
+{% from "_macros.html" import render_delete_modal %}
+
+{% block admin_content %}
+<h2>{{ user.username }}</h2>
+<hr />
+<div class="col-md-8">
+    <h3>{{ _('Information') }}</h3>
+    <p>{{ _('Username:') }} {{ user.username }}</p>
+    <p>{{ _('e-mail:') }} {{ user.email }}</p>
+    <p>{{ _('Registered at:') }} {{ moment(user.registered_at).format('LLL') }}</p>
+    <p>{{ _('Confirmed at:') }} {{ moment(user.confirmed_at).format('LLL') }}</p>
+    <p>{{ _('Last seen:') }} {{ moment(user.last_seen).format('LLL') }}</p>
+    <p>{{ _('Roles:') }} {{ user.roles|join(', ', attribute='name') }}</p>
+</div>
+<div class="col-md-4">
+    <h3>Actions</h3>
+    <ul>
+        <li><a href="{{ url_for('admin.edit_user', id=user.id) }}">{{ _('Edit') }}</a></li>
+        {% if current_user != user %}
+        <li><a href="{{ url_for('admin.delete_user', id=user.id) }}">{{ _('Delete') }}</a></li>
+        {% endif %}
+        {% if not user.has_confirmed_email() %}
+        <li><a href="#">{{ _('Resend confirmation mail') }}</a></li>
+        <li><a href="#">{{ _('Confirm') }}</a></li>
+        {% endif %}
+        <li><a href="#">{{ _('Send reset password mail') }}</a></li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block page_modals %}
+{{ super() }}
+{{ render_delete_modal() }}
+{% endblock %}

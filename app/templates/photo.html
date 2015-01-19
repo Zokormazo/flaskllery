@@ -20,6 +20,7 @@
 {% endblock %}
 
 {% block page_navbar %}
+{% if current_user.can_edit(photo) %}
 <li class="dropdown">
     <a href="#" class="dropwdown-toggle" data-toggle="dropdown">{{ _('Photo') }}</a>
     <ul class="dropdown-menu">
@@ -28,6 +29,7 @@
 	<li><a href="{{ url_for('gallery.update_photo', id=photo.id) }}">{{ _('Update') }}</a></li>
     </ul>
 </li>
+{% endif %}
 {% endblock %}
 
 {% block page_content %}

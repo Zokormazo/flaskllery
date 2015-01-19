@@ -31,6 +31,13 @@ class User(db.Model, UserMixin):
 	albums = db.relationship('Album', backref='author', lazy='dynamic', cascade='save-update, merge, delete, delete-orphan')
 	photos = db.relationship('Photo', backref='author', lazy='dynamic', cascade='save-update, merge, delete, delete-orphan')
 
+	def can_edit(self,element):
+		''' return wether can edit element or not '''
+		if self.has_roles('admin'):
+			return True
+		if self.has_roles('poweruser') and self == element.author:
+			return True
+
 # Role data model
 class Role(db.Model):
 	id = db.Column(db.Integer(), primary_key = True)

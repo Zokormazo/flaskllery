@@ -1,0 +1,31 @@
+{% extends 'member_base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="nav-header">{{ _('Main') }}</li>
+                <li><a href="{{ url_for('admin.index') }}">{{ _('Overview') }}</a></li>
+                <li class="divider">
+                <li class="nav-header">{{ _('Members') }}</li>
+                <li><a href="{{ url_for('admin.members') }}">{{ _('Manage') }}</a></li>
+                <li><a href="#">{{ _('Add User') }}</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+            {% endfor %}
+            <h1>Admin Dashboard</h1>
+            {% block admin_content %}{% endblock %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% block page_modals %}{% endblock %}
+</div>
+{% endblock %}

@@ -7,7 +7,9 @@
 {% endblock %}
 
 {% block page_navbar %}
+{% if current_user.has_roles(['admin', 'poweruser']) %}
 <li><a href="{{ url_for('gallery.new_album') }}">{{ _('New Album') }}</a></li>
+{% endif %}
 {% endblock %}
 
 {% block page_content %}

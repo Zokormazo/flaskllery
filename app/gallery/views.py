@@ -1,7 +1,8 @@
 from flask import render_template, flash, redirect, url_for, send_file, abort, Response, jsonify, current_app
-from flask.ext.user import login_required, current_user
+from flask.ext.user import login_required, roles_required, current_user
 from flask.ext.babel import gettext
 from app.models import Album, Directory, Photo
+from app.decorators import can_edit
 from app.gallery.forms import NewAlbumForm, EditAlbumForm, AddDirectoryForm, EditPhotoForm
 from app import db
 from PIL import Image
@@ -21,7 +22,7 @@ def index(page=1):
 	return render_template('index.html', albums=albums)
 
 @blueprint.route('/album/new', methods=['GET', 'POST'])
-@login_required
+@roles_required(['admin','poweruser'])
 def new_album():
 	'''
 	New album
@@ -47,7 +48,7 @@ def album(id, page=1):
 	return render_template('album.html', album=album, photos=photos)
 
 @blueprint.route('/album/edit/<int:id>', methods=['GET', 'POST'])
-@login_required
+@can_edit(Album)
 def edit_album(id):
 	'''
 	Edit album
@@ -66,7 +67,7 @@ def edit_album(id):
 		directory = Directory(album=album, path=directory_form.path.data)
 		db.session.add(directory)
 		db.session.commit()
-		flash('\'' + directory.path + '\' directory added to \'' + album.title + '\'')
+		flash(gettext('\%(directory)s\' directory added to \'%(album)s\'', directory=directory.path, album=album.title))
 		return redirect(url_for('.edit_album', id=album.id))
 
 	form.title.data = album.title
@@ -74,7 +75,7 @@ def edit_album(id):
 	return render_template('edit_album.html', album=album, form=form, directory_form = directory_form)
 
 @blueprint.route('/album/delete/<int:id>')
-@login_required
+@can_edit(Album)
 def delete_album(id):
 	'''
 	Delete album
@@ -86,7 +87,7 @@ def delete_album(id):
 	return redirect(url_for('.index'))
 
 @blueprint.route('/album/refresh/<int:id>')
-@login_required
+@can_edit(Album)
 def refresh_album(id):
 	'''
 	Refresh album: check all directories tracked by album for new photos & changes
@@ -97,7 +98,7 @@ def refresh_album(id):
 	return redirect(url_for('.album', id=album.id))
 
 @blueprint.route('/directory/refresh/<int:id>')
-@login_required
+@can_edit(Directory)
 def refresh_directory(id):
 	'''
 	Refresh directory: check directory for new photos & changes
@@ -108,7 +109,7 @@ def refresh_directory(id):
 	return redirect(url_for('.edit_album', id=directory.album_id))
 
 @blueprint.route('/directory/delete/<int:id>')
-@login_required
+@can_edit(Directory)
 def delete_directory(id):
 	'''
 	Delete directory
@@ -130,7 +131,7 @@ def photo(id):
 	return render_template('photo.html', photo=photo)
 
 @blueprint.route('/photo/update/<int:id>')
-@login_required
+@can_edit(Photo)
 def update_photo(id):
 	'''
 	Update photo information
@@ -142,7 +143,7 @@ def update_photo(id):
 	return redirect(url_for('.photo', id=photo.id))
 
 @blueprint.route('/photo/edit/<int:id>', methods=['GET', 'POST'])
-@login_required
+@can_edit(Photo)
 def edit_photo(id):
 	''' Edit photo title & caption '''
 	form = EditPhotoForm()
@@ -159,7 +160,7 @@ def edit_photo(id):
 	return render_template('edit_photo.html', photo=photo, form=form)
 
 @blueprint.route('/photo/delete/<int:id>')
-@login_required
+@can_edit(Photo)
 def delete_photo(id):
 	'''
 	Delete photo
@@ -170,6 +171,7 @@ def delete_photo(id):
 	return redirect(url_for('.album', id=photo.album_id))
 
 @blueprint.route('/photo/raw/<int:id>')
+@login_required
 def photo_file(id):
 	'''
 	Return raw photo file

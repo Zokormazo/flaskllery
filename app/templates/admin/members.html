@@ -1,0 +1,58 @@
+{% extends "admin/member_base.html" %}
+{% from "_macros.html" import render_delete_modal %}
+
+{% block admin_content %}
+<h2>{{ _('Members') }}</h2>
+<hr />
+<table class="table table-striped table-condensed">
+    <thead>
+        <tr>
+            <th>{{ _('ID') }}</th>
+            <th>{{ _('Username') }}</th>
+            <th>{{ _('E-mail') }}</th>
+            <th>{{ _('Date registered') }}</th>
+            <th>{{ _('Date confirmed') }}</th>
+            <th>{{ _('Date last seen') }}</th>
+            <th>{{ _('Roles') }}</th>
+            <th>{{ _('Actions') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members.items %}
+        <tr>
+            <td>{{ member.id }}</td>
+            <td>{{ member.username }}</td>
+            <td>{{ member.email }}</td>
+            <td>{{ moment(member.registered_at).format('LLL') }}</td>
+            <td>
+                {% if member.confirmed_at %}
+                {{ moment(member.confirmed_at).format('LLL') }}
+                {% else %}
+                {{ _('not confirmed') }}
+                {% endif %}
+            </td>
+            <td>
+                {% if member.last_seen %}
+                {{ moment(member.last_seen).format('LLL') }}
+                {% else %}
+                {{ _('never') }}
+                {% endif %}
+            </td>
+            <td>{{ member.roles|join(', ', attribute='name')}} </td>
+            <td>
+		<a href="{{ url_for('admin.user', id=member.id) }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open"></span></a>
+                <a href="{{ url_for('admin.edit_user', id=member.id) }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                {% if current_user != member %}
+                <a href="#" class="btn btn-default btn-xs confirm-delete" aria-label="{{ _('Delete') }}" data-toggle="modal" data-target="#deleteModal" data-message="{{ _('Are you sure you want to delete %(user)s user?', user=member.username) }}" data-url="{{ url_for('admin.delete_user', id=member.id) }}"><span class="glyphicon glyphicon-remove"></span></a>
+                {% endif %}
+            </td>
+         </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block page_modals %}
+{{ super() }}
+{{ render_delete_modal() }}
+{% endblock %}
