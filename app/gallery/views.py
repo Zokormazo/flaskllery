@@ -56,14 +56,14 @@ def edit_album(id):
 	form = EditAlbumForm(prefix='form1')
 	directory_form = AddDirectoryForm(prefix='form2')
 	album = Album.query.get_or_404(id)
-	if form.validate_on_submit() and form.submit.data:
+	if form.submit.data and form.validate_on_submit():
 		album.title = form.title.data
 		album.description = form.description.data
 		db.session.add(album)
 		db.session.commit()
 		flash(gettext('\'%(album)s\' album edited', album=album.title))
 		return redirect(url_for('.album', id=album.id))
-	if directory_form.validate_on_submit() and directory_form.submit.data:
+	if directory_form.submit.data and directory_form.validate_on_submit():
 		directory = Directory(album=album, path=directory_form.path.data)
 		db.session.add(directory)
 		db.session.commit()
