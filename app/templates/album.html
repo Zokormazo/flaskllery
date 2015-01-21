@@ -16,13 +16,20 @@
 {% endblock %}
 
 {% block page_navbar %}
-{% if current_user.can_edit(album) %}
+{% if current_user.has_roles(['admin', 'poweruser']) %}
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ _('Album') }}</a>
     <ul class="dropdown-menu">
+        {% if current_user.can_edit(album) %}
         <li><a href="{{ url_for('gallery.edit_album', id=album.id) }}">{{ _('Edit') }}</a></li>
         <li><a href="#" data-toggle="modal" data-target="#deleteModal" data-message="{{ _('Are you sure you want to remove %(album)s album? Deleting an album will delete all the inside directory and photos', album=album.title) }}" data-url="{{ url_for('gallery.delete_album', id=album.id) }}">{{ _('Delete') }}</a></li>
         <li><a href="{{ url_for('gallery.refresh_album', id=album.id) }}">{{ _('Refresh') }}</a></li>
+        {% endif %}
+        {% if request.args.get('show_hidden') %}
+        <li><a href="{{ url_for('gallery.album', id=album.id) }}">{{ _('Hide hidden photos') }}</a></li>
+        {% else %}
+        <li><a href="{{ url_for('gallery.album', id=album.id, show_hidden=1) }}">{{ _('Show hidden photos') }}</a></li>
+        {% endif %}
     </ul>
 </li>
 {% endif %}

@@ -8,7 +8,17 @@
 
 {% block page_navbar %}
 {% if current_user.has_roles(['admin', 'poweruser']) %}
-<li><a href="{{ url_for('gallery.new_album') }}">{{ _('New Album') }}</a></li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ _('Gallery') }}</a>
+    <ul class="dropdown-menu">
+        <li><a href="{{ url_for('gallery.new_album') }}">{{ _('New Album') }}</a></li>
+        {% if request.args.get('show_hidden') %}
+        <li><a href="{{ url_for('gallery.index') }}">{{ _('Hide hidden albums') }}</a></li>
+        {% else %}
+        <li><a href="{{ url_for('gallery.index', show_hidden=1) }}">{{ _('Show hidden albums') }}</a></li>
+        {% endif %}
+    </ul>
+</li>
 {% endif %}
 {% endblock %}
 

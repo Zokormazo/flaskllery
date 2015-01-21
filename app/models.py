@@ -58,6 +58,7 @@ class Album(db.Model):
 	title = db.Column(db.String(64))
 	description = db.Column(db.String(255))
 	author_id = db.Column('author', db.Integer, db.ForeignKey('user.id'), nullable = False)
+	hidden = db.Column('is_hidden', db.Boolean(), nullable=False, server_default='0')
 
 	# Timestamp information
 	created_at = db.Column(db.DateTime, default=db.func.now(), nullable = False)
@@ -113,6 +114,7 @@ class Photo(db.Model):
 	path = db.Column(db.String(255), nullable = False, index = True)
 	directory_id = db.Column('directory', db.Integer, db.ForeignKey('directory.id'), nullable = False)
 	author_id = db.Column('author', db.Integer, db.ForeignKey('user.id'), nullable = False)
+	hidden = db.Column('is_hidden', db.Boolean(), nullable=False, server_default='0')
 	title = db.Column(db.String(64))
 	caption = db.Column(db.String(255))
 	size = db.Column(db.Integer)

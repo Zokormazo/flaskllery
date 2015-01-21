@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
 from flask.ext.babel import gettext
-from wtforms import StringField, SubmitField
+from wtforms import StringField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
 import os
 
@@ -17,6 +17,7 @@ class NewAlbumForm(Form):
 class EditAlbumForm(Form):
 	title = StringField(gettext('Title'), validators=[DataRequired(), Length(3, 64)])
 	description = StringField(gettext('Description'), validators=[Length(0, 255)])
+        hidden = BooleanField(gettext('Hidden'))
 	submit = SubmitField(gettext('Edit'))
 
 class AddDirectoryForm(Form):
@@ -26,4 +27,5 @@ class AddDirectoryForm(Form):
 class EditPhotoForm(Form):
 	title = StringField(gettext('Title'))
 	caption = StringField(gettext('Caption'))
+        hidden = BooleanField(gettext('Hidden'))
 	submit = SubmitField(gettext('Edit'))

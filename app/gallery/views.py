@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, send_file, abort, Response, jsonify, current_app
+from flask import render_template, flash, redirect, url_for, send_file, abort, Response, jsonify, current_app, request
 from flask.ext.user import login_required, roles_required, current_user
 from flask.ext.babel import gettext
 from app.models import Album, Directory, Photo
@@ -18,7 +18,10 @@ def index(page=1):
 	'''
 	Show gallery main page: album list
 	'''
-	albums = Album.query.paginate(page, current_app.config['FLASKLLERY_ALBUMS_PER_PAGE'], False)
+	if request.args.get('show_hidden'):
+		albums = Album.query.paginate(page, current_app.config['FLASKLLERY_ALBUMS_PER_PAGE'], False)
+	else:
+		albums = Album.query.filter_by(hidden=False).paginate(page, current_app.config['FLASKLLERY_ALBUMS_PER_PAGE'], False)
 	return render_template('index.html', albums=albums)
 
 @blueprint.route('/album/new', methods=['GET', 'POST'])
@@ -44,7 +47,12 @@ def album(id, page=1):
 	View album
 	'''
 	album = Album.query.get_or_404(id)
-	photos = Photo.query.join(Directory).filter(Directory.album_id == album.id).paginate(page, current_app.config['FLASKLLERY_PHOTOS_PER_PAGE'], False)
+	if album.hidden and not current_user.has_roles(['admin', 'poweruser']):
+		abort(404)
+	if request.args.get('show_hidden'):
+		photos = Photo.query.join(Directory).filter(Directory.album_id == album.id).paginate(page, current_app.config['FLASKLLERY_PHOTOS_PER_PAGE'], False)
+	else:
+		photos = Photo.query.filter_by(hidden=False).join(Directory).filter(Directory.album_id == album.id).paginate(page, current_app.config['FLASKLLERY_PHOTOS_PER_PAGE'], False)
 	return render_template('album.html', album=album, photos=photos)
 
 @blueprint.route('/album/edit/<int:id>', methods=['GET', 'POST'])
@@ -59,6 +67,7 @@ def edit_album(id):
 	if form.submit.data and form.validate_on_submit():
 		album.title = form.title.data
 		album.description = form.description.data
+		album.hidden = form.hidden.data
 		db.session.add(album)
 		db.session.commit()
 		flash(gettext('\'%(album)s\' album edited', album=album.title))
@@ -72,6 +81,7 @@ def edit_album(id):
 
 	form.title.data = album.title
 	form.description.data = album.description
+	form.hidden.data = album.hidden
 	return render_template('edit_album.html', album=album, form=form, directory_form = directory_form)
 
 @blueprint.route('/album/delete/<int:id>')
@@ -128,6 +138,8 @@ def photo(id):
 	Show photo
 	'''
 	photo = Photo.query.get_or_404(id)
+	if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+		abort(404)
 	return render_template('photo.html', photo=photo)
 
 @blueprint.route('/photo/update/<int:id>')
@@ -151,12 +163,14 @@ def edit_photo(id):
 	if form.validate_on_submit():
 		photo.title = form.title.data
 		photo.caption = form.caption.data
+		photo.hidden = form.hidden.data
 		db.session.add(photo)
 		db.session.commit()
 		flash(gettext('Photo \'%(photo)s\' edited', photo=photo.path))
 		return redirect(url_for('.photo', id=photo.id))
 	form.title.data = photo.title
 	form.caption.data = photo.caption
+	form.hidden.data = photo.hidden
 	return render_template('edit_photo.html', photo=photo, form=form)
 
 @blueprint.route('/photo/delete/<int:id>')
@@ -177,6 +191,8 @@ def photo_file(id):
 	Return raw photo file
 	'''
 	photo = Photo.query.get_or_404(id)
+	if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+		abort(404)
 	return send_file(photo.path)
 
 @blueprint.route('/photo/thumb/<int:id>/<int:width>x<int:height>')
@@ -186,6 +202,8 @@ def photo_thumbnail(id, width, height):
 	Return photo thumbnail of given dimension
 	'''
 	photo = Photo.query.get_or_404(id)
+	if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+		abort(404)
 	return send_file(photo.thumbnail_path(width,height))
 
 @blueprint.route('/json/album/<int:id>/photos')
@@ -194,11 +212,14 @@ def json_album_photos(id):
 	'''
 	Returns an array of photo ids that belongs to Album
 	'''
+	album = Album.query.get(id)
+	if album.hidden and not current_user.has_roles(['admin', 'poweruser']):
+		abort(404)
 	photos = Photo.query.with_entities(Photo.id).join(Directory).filter(Directory.album_id == id).all()
 	if photos:
 		return json.dumps(zip(*photos))[1:-1]
 	else:
-		Abort(404)
+		abort(404)
 
 @blueprint.route('/json/photo/<int:id>')
 @login_required
@@ -207,6 +228,8 @@ def json_photo(id):
 	Returns photo info in json format
 	'''
 	photo = Photo.query.get_or_404(id)
+	if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+		abort(404)
 	return jsonify(photo.json())
 
 @blueprint.route('/json/photo/<int:id>/exif')
@@ -216,6 +239,8 @@ def json_photo_exif(id):
 	Returns exif info in json format
 	'''
 	photo = Photo.query.get_or_404(id)
+	if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+		abort(404)
 	if photo.exif_data:
 		return jsonify(photo.exif_data.json())
 	else:
