@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-01-14 11:16+0100\n"
+"POT-Creation-Date: 2015-01-22 11:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,51 +17,99 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: app/gallery/forms.py:9 app/gallery/forms.py:18
-msgid "Add"
+#: app/admin/forms.py:17 app/templates/admin/members.html:11
+msgid "Username"
 msgstr ""
 
-#: app/gallery/forms.py:14 app/gallery/forms.py:23 app/templates/album.html:17
-#: app/templates/album.html:60 app/templates/photo.html:15
+#: app/admin/forms.py:18
+msgid "Email"
+msgstr ""
+
+#: app/admin/forms.py:20 app/gallery/forms.py:21 app/gallery/forms.py:31
+#: app/templates/album.html:24 app/templates/album.html:74
+#: app/templates/photo.html:27 app/templates/admin/user.html:19
 msgid "Edit"
 msgstr ""
 
-#: app/gallery/views.py:34
+#: app/admin/views.py:50
+#, python-format
+msgid "User '%(user)s' edited"
+msgstr ""
+
+#: app/admin/views.py:65
+#, python-format
+msgid "User '%(user)s' deleted"
+msgstr ""
+
+#: app/gallery/forms.py:10
+msgid "Path is not a valid directory. Please try with a valid directory path"
+msgstr ""
+
+#: app/gallery/forms.py:13 app/gallery/forms.py:18 app/gallery/forms.py:28
+msgid "Title"
+msgstr ""
+
+#: app/gallery/forms.py:14 app/gallery/forms.py:19
+msgid "Description"
+msgstr ""
+
+#: app/gallery/forms.py:15 app/gallery/forms.py:25
+msgid "Add"
+msgstr ""
+
+#: app/gallery/forms.py:20 app/gallery/forms.py:30
+msgid "Hidden"
+msgstr ""
+
+#: app/gallery/forms.py:24
+msgid "Path"
+msgstr ""
+
+#: app/gallery/forms.py:29
+msgid "Caption"
+msgstr ""
+
+#: app/gallery/views.py:38
 #, python-format
 msgid "New album '%(album)s' added"
 msgstr ""
 
-#: app/gallery/views.py:63
+#: app/gallery/views.py:73
 #, python-format
 msgid "'%(album)s' album edited"
 msgstr ""
 
-#: app/gallery/views.py:85
+#: app/gallery/views.py:79
 #, python-format
-msgid "'%(album)s' album deleted"
+msgid "'%(directory)s' directory added to '%(album)s'"
 msgstr ""
 
 #: app/gallery/views.py:96
 #, python-format
-msgid "'%(album)s' album refreshed"
+msgid "'%(album)s' album deleted"
 msgstr ""
 
 #: app/gallery/views.py:107
 #, python-format
+msgid "'%(album)s' album refreshed"
+msgstr ""
+
+#: app/gallery/views.py:118
+#, python-format
 msgid "Directory '%(directory)s' refreshed"
 msgstr ""
 
-#: app/gallery/views.py:120
+#: app/gallery/views.py:131
 #, python-format
 msgid "'%(directory)s' directory deleted from '%(album)s'"
 msgstr ""
 
-#: app/gallery/views.py:141
+#: app/gallery/views.py:154
 #, python-format
 msgid "'%(photo)s' updated on '%(album)s'"
 msgstr ""
 
-#: app/gallery/views.py:155
+#: app/gallery/views.py:169
 #, python-format
 msgid "Photo '%(photo)s' edited"
 msgstr ""
@@ -86,104 +134,123 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: app/templates/_macros.html:51 app/templates/album.html:18
-#: app/templates/edit_album.html:41 app/templates/photo.html:16
+#: app/templates/_macros.html:51 app/templates/album.html:25
+#: app/templates/edit_album.html:41 app/templates/photo.html:28
+#: app/templates/admin/members.html:46 app/templates/admin/user.html:21
 msgid "Delete"
 msgstr ""
 
-#: app/templates/album.html:15
+#: app/templates/album.html:21
 msgid "Album"
 msgstr ""
 
-#: app/templates/album.html:18
+#: app/templates/album.html:25
 #, python-format
 msgid ""
 "Are you sure you want to remove %(album)s album? Deleting an album will "
 "delete all the inside directory and photos"
 msgstr ""
 
-#: app/templates/album.html:19 app/templates/edit_album.html:40
+#: app/templates/album.html:26 app/templates/edit_album.html:40
 msgid "Refresh"
 msgstr ""
 
-#: app/templates/album.html:58
+#: app/templates/album.html:29
+msgid "Hide hidden photos"
+msgstr ""
+
+#: app/templates/album.html:31
+msgid "Show hidden photos"
+msgstr ""
+
+#: app/templates/album.html:72 app/templates/admin/user.html:8
 msgid "Information"
 msgstr ""
 
-#: app/templates/album.html:59
+#: app/templates/album.html:73
 msgid "Open"
 msgstr ""
 
-#: app/templates/album.html:61
+#: app/templates/album.html:75
 msgid "Download"
 msgstr ""
 
-#: app/templates/album.html:68 app/templates/edit_album.html:14
+#: app/templates/album.html:82 app/templates/edit_album.html:14
 msgid "General"
 msgstr ""
 
-#: app/templates/album.html:69
+#: app/templates/album.html:83
 msgid "Exif"
 msgstr ""
 
-#: app/templates/album.html:74
+#: app/templates/album.html:88 app/templates/photo.html:41
 msgid "General Information"
 msgstr ""
 
-#: app/templates/album.html:78
+#: app/templates/album.html:92 app/templates/photo.html:43
 msgid "File:"
 msgstr ""
 
-#: app/templates/album.html:79
+#: app/templates/album.html:93 app/templates/photo.html:44
 msgid "Size:"
 msgstr ""
 
-#: app/templates/album.html:82
+#: app/templates/album.html:96 app/templates/photo.html:45
 msgid "Format:"
 msgstr ""
 
-#: app/templates/album.html:83
+#: app/templates/album.html:97 app/templates/photo.html:46
 msgid "Resolution:"
 msgstr ""
 
-#: app/templates/album.html:84
+#: app/templates/album.html:98
 msgid "Mode:"
 msgstr ""
 
-#: app/templates/album.html:90
+#: app/templates/album.html:104 app/templates/photo.html:47
 msgid "Exif Information"
 msgstr ""
 
-#: app/templates/album.html:94
+#: app/templates/album.html:108 app/templates/photo.html:49
 msgid "Taken at:"
 msgstr ""
 
-#: app/templates/album.html:95
+#: app/templates/album.html:109 app/templates/photo.html:54
 msgid "Camera:"
 msgstr ""
 
-#: app/templates/album.html:96
+#: app/templates/album.html:110 app/templates/photo.html:62
 msgid "Orientation:"
 msgstr ""
 
-#: app/templates/album.html:99
+#: app/templates/album.html:113 app/templates/photo.html:67
 msgid "Focal Length:"
 msgstr ""
 
-#: app/templates/album.html:100
+#: app/templates/album.html:114 app/templates/photo.html:72
 msgid "Aperture:"
 msgstr ""
 
-#: app/templates/album.html:101
+#: app/templates/album.html:115 app/templates/photo.html:77
 msgid "ISO Speed"
 msgstr ""
 
-#: app/templates/album.html:104
+#: app/templates/album.html:118 app/templates/photo.html:82
 msgid "Latitude"
 msgstr ""
 
-#: app/templates/album.html:105
+#: app/templates/album.html:119 app/templates/photo.html:87
 msgid "Longitude"
+msgstr ""
+
+#: app/templates/album.html:129 app/templates/edit_photo.html:32
+#: app/templates/photo.html:98
+msgid "Previous"
+msgstr ""
+
+#: app/templates/album.html:132 app/templates/edit_photo.html:35
+#: app/templates/photo.html:101
+msgid "Next"
 msgstr ""
 
 #: app/templates/edit_album.html:6
@@ -213,7 +280,7 @@ msgid ""
 "directory will remove all the photos fetched from it"
 msgstr ""
 
-#: app/templates/edit_photo.html:6
+#: app/templates/edit_photo.html:12
 msgid "Edit Photo"
 msgstr ""
 
@@ -221,33 +288,151 @@ msgstr ""
 msgid "Albums"
 msgstr ""
 
-#: app/templates/index.html:10 app/templates/new_album.html:5
+#: app/templates/index.html:12
+msgid "Gallery"
+msgstr ""
+
+#: app/templates/index.html:14 app/templates/new_album.html:5
 msgid "New Album"
 msgstr ""
 
-#: app/templates/member_base.html:22
+#: app/templates/index.html:16
+msgid "Hide hidden albums"
+msgstr ""
+
+#: app/templates/index.html:18
+msgid "Show hidden albums"
+msgstr ""
+
+#: app/templates/member_base.html:20
+msgid "Dashboard"
+msgstr ""
+
+#: app/templates/member_base.html:25
 msgid "Profile"
 msgstr ""
 
-#: app/templates/member_base.html:23
+#: app/templates/member_base.html:26
 msgid "Logout"
 msgstr ""
 
-#: app/templates/member_base.html:27
+#: app/templates/member_base.html:30
 msgid "Log In"
 msgstr ""
 
-#: app/templates/photo.html:13
+#: app/templates/photo.html:25
 msgid "Photo"
 msgstr ""
 
-#: app/templates/photo.html:16
+#: app/templates/photo.html:28
 #, python-format
 msgid "Are you sure you want to remove %(photo)s photo?"
 msgstr ""
 
-#: app/templates/photo.html:17
+#: app/templates/photo.html:29
 msgid "Update"
+msgstr ""
+
+#: app/templates/admin/edit_user.html:5
+#, python-format
+msgid "Edit user: %(user)s"
+msgstr ""
+
+#: app/templates/admin/member_base.html:8
+msgid "Main"
+msgstr ""
+
+#: app/templates/admin/member_base.html:9
+msgid "Overview"
+msgstr ""
+
+#: app/templates/admin/member_base.html:11 app/templates/admin/members.html:5
+msgid "Members"
+msgstr ""
+
+#: app/templates/admin/member_base.html:12
+msgid "Manage"
+msgstr ""
+
+#: app/templates/admin/member_base.html:13
+msgid "Add User"
+msgstr ""
+
+#: app/templates/admin/members.html:10
+msgid "ID"
+msgstr ""
+
+#: app/templates/admin/members.html:12
+msgid "E-mail"
+msgstr ""
+
+#: app/templates/admin/members.html:13
+msgid "Date registered"
+msgstr ""
+
+#: app/templates/admin/members.html:14
+msgid "Date confirmed"
+msgstr ""
+
+#: app/templates/admin/members.html:15
+msgid "Date last seen"
+msgstr ""
+
+#: app/templates/admin/members.html:16
+msgid "Roles"
+msgstr ""
+
+#: app/templates/admin/members.html:17
+msgid "Actions"
+msgstr ""
+
+#: app/templates/admin/members.html:31
+msgid "not confirmed"
+msgstr ""
+
+#: app/templates/admin/members.html:38
+msgid "never"
+msgstr ""
+
+#: app/templates/admin/members.html:46
+#, python-format
+msgid "Are you sure you want to delete %(user)s user?"
+msgstr ""
+
+#: app/templates/admin/user.html:9
+msgid "Username:"
+msgstr ""
+
+#: app/templates/admin/user.html:10
+msgid "e-mail:"
+msgstr ""
+
+#: app/templates/admin/user.html:11
+msgid "Registered at:"
+msgstr ""
+
+#: app/templates/admin/user.html:12
+msgid "Confirmed at:"
+msgstr ""
+
+#: app/templates/admin/user.html:13
+msgid "Last seen:"
+msgstr ""
+
+#: app/templates/admin/user.html:14
+msgid "Roles:"
+msgstr ""
+
+#: app/templates/admin/user.html:24
+msgid "Resend confirmation mail"
+msgstr ""
+
+#: app/templates/admin/user.html:25
+msgid "Confirm"
+msgstr ""
+
+#: app/templates/admin/user.html:27
+msgid "Send reset password mail"
 msgstr ""
 
 #: app/templates/flask_user/change_password.html:4
