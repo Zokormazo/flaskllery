@@ -76,7 +76,7 @@ def edit_album(id):
 		directory = Directory(album=album, path=directory_form.path.data)
 		db.session.add(directory)
 		db.session.commit()
-		flash(gettext('\%(directory)s\' directory added to \'%(album)s\'', directory=directory.path, album=album.title))
+		flash(gettext('\'%(directory)s\' directory added to \'%(album)s\'', directory=directory.path, album=album.title))
 		return redirect(url_for('.edit_album', id=album.id))
 
 	form.title.data = album.title
