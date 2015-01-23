@@ -21,7 +21,7 @@ def upgrade():
         'photo',
         sa.Column('id', sa.Integer, primary_key = True),
         sa.Column('path', sa.String(255), nullable = False, index = True),
-	sa.Column('album', sa.Integer, sa.ForeignKey('album.id'), nullable = False),
+        sa.Column('album', sa.Integer, sa.ForeignKey('album.id'), nullable = False),
         sa.Column('title', sa.String(64)),
         sa.Column('caption', sa.String(255)),
         sa.Column('added_at', sa.DateTime),

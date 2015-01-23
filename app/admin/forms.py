@@ -1,3 +1,10 @@
+# coding=utf8
+"""
+Copyright 2014, Julen Landa Alustiza
+
+Licensed under the Eiffel Forum License 2.
+"""
+
 from flask.ext.wtf import Form
 from flask.ext.babel import gettext
 from wtforms import StringField, SubmitField, SelectMultipleField, widgets
@@ -14,8 +21,7 @@ class MultiCheckboxField(SelectMultipleField):
     option_widget = widgets.CheckboxInput()
 
 class EditUserForm (Form):
-	username = StringField(gettext('Username'))
-	email = StringField(gettext('Email'))
-	roles = MultiCheckboxField('roles', coerce=int)
-	submit = SubmitField(gettext('Edit'))
-
+    username = StringField(gettext('Username'))
+    email = StringField(gettext('Email'))
+    roles = MultiCheckboxField('roles', coerce=int)
+    submit = SubmitField(gettext('Edit'))

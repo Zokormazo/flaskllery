@@ -1,3 +1,9 @@
+/**
+ * Copyright 2014, Julen Landa Alustiza
+ *
+ * Licensed under the Eiffel Forum License 2.
+ */
+
 // Delete modal
 $('#deleteModal').on('show.bs.modal', function (event) {
     var trigger = $(event.relatedTarget) // tag that triggered the modal

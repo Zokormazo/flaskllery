@@ -1,3 +1,8 @@
+{#
+Copyright 2014, Julen Landa Alustiza
+
+Licensed under the Eiffel Forum License 2.
+#}
 {% macro render_field(field, label=None, label_visible=true, right_url=None, right_label=None) -%}
     <div class="form-group {% if field.errors %}has-error{% endif %} {{ kwargs.pop('class_', '') }}">
         {% if field.type != 'HiddenField' and label_visible %}

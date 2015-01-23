@@ -1,7 +1,7 @@
 """create user table
 
 Revision ID: 1682a79c0592
-Revises: 
+Revises:
 Create Date: 2014-12-30 12:10:56.102308
 
 """
@@ -21,14 +21,14 @@ def upgrade():
         'user',
         sa.Column('id', sa.Integer, primary_key=True),
 
-	# User authentication information
+        # User authentication information
         sa.Column('username', sa.String(50), nullable=False),
         sa.Column('password', sa.String(255), nullable=False, server_default=''),
         sa.Column('reset_password_token', sa.String(100), nullable=False, server_default=''),
 
         # User email information
         sa.Column('email', sa.String(255), nullable=False, unique=True),
-	sa.Column('confirmed_at', sa.DateTime),
+        sa.Column('confirmed_at', sa.DateTime),
 
         # User activity information
         sa.Column('is_active', sa.Boolean, nullable=False, server_default='0'),
