@@ -33,6 +33,9 @@ class User(db.Model, UserMixin):
     registered_at = db.Column(db.DateTime, default=db.func.now())
     last_seen = db.Column(db.DateTime)
 
+    # User preferences
+    language = db.Column(db.String(5))
+
     # Relationships
     roles = db.relationship('Role', secondary='user_roles', backref=db.backref('users', lazy='dynamic'))
     albums = db.relationship('Album', backref='author', lazy='dynamic', cascade='save-update, merge, delete, delete-orphan')

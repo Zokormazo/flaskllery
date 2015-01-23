@@ -1,0 +1,20 @@
+{#
+Copyright 2014, Julen Landa Alustiza
+
+Licensed under the Eiffel Forum License 2.
+#}
+{% extends "member_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_header %}
+<h1>{{ _('Preferences') }}
+    <br />
+    <small>{{ user.username }}</small>
+</h1>
+{% endblock %}
+
+{% block page_content %}
+<div class="row">
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}

@@ -6,6 +6,7 @@ Licensed under the Eiffel Forum License 2.
 """
 
 from flask import redirect, request, url_for, g
+from flask.ext.user import current_user
 from .. import babel
 from . import blueprint
 
@@ -15,6 +16,8 @@ def index():
 
 @babel.localeselector
 def get_locale():
+    if current_user.language:
+        return current_user.language
     translations = [str(translation) for translation in babel.list_translations()]
     return request.accept_languages.best_match(translations)
 

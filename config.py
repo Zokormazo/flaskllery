@@ -28,13 +28,11 @@ class Config:
     USER_ENABLE_USERNAME = True
     USER_APP_NAME = 'Flaskllery'
 
+    # flask-babel
+    BABEL_DEFAULT_LOCALE = 'eu'
+
     # administrator list
     ADMINS = os.environ.get('ADMINS')
-
-    LANGUAGES = {
-            'en': 'English',
-            'eu': 'Euskara'
-    }
 
     #Flaskllery
 
