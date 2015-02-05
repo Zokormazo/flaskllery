@@ -68,6 +68,7 @@ class Album(db.Model):
     title = db.Column(db.String(64))
     description = db.Column(db.String(255))
     author_id = db.Column('author', db.Integer, db.ForeignKey('user.id'), nullable = False)
+    parent_id = db.Column(db.Integer, db.ForeignKey('album.id'), index=True)
     hidden = db.Column('is_hidden', db.Boolean(), nullable=False, server_default='0')
 
     # Timestamp information
@@ -76,6 +77,7 @@ class Album(db.Model):
     timestamp_to = db.Column(db.DateTime)
 
     # Relationships
+    parent = db.relationship('Album', remote_side=id, backref='sub_albums')
     directories = db.relationship('Directory', backref='album', lazy='dynamic', cascade='merge, save-update, delete, delete-orphan')
 
     # Refresh directories

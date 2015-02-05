@@ -25,21 +25,26 @@ def index(page=1):
     '''
     Show gallery main page: album list
     '''
-    if request.args.get('show_hidden'):
-        albums = Album.query.paginate(page, current_app.config['FLASKLLERY_ALBUMS_PER_PAGE'], False)
-    else:
-        albums = Album.query.filter_by(hidden=False).paginate(page, current_app.config['FLASKLLERY_ALBUMS_PER_PAGE'], False)
+    query = Album.query.filter_by(parent=None)
+    if not request.args.get('show_hidden'):
+        query = query.filter_by(hidden=False)
+    albums = query.paginate(page, current_app.config['FLASKLLERY_ALBUMS_PER_PAGE'], False)
     return render_template('index.html', albums=albums)
 
 @blueprint.route('/album/new', methods=['GET', 'POST'])
+@blueprint.route('/album/new/<int:parent_id>', methods=['GET', 'POST'])
 @roles_required(['admin','poweruser'])
-def new_album():
+def new_album(parent_id=None):
     '''
     New album
     '''
     form = NewAlbumForm()
+    if parent_id:
+        parent = Album.query.get_or_404(parent_id)
+    else:
+        parent = None
     if form.validate_on_submit():
-        album = Album(title=form.title.data, description=form.description.data, author=current_user)
+        album = Album(title=form.title.data, description=form.description.data, author=current_user, parent=parent)
         db.session.add(album)
         db.session.commit()
         flash(gettext('New album \'%(album)s\' added', album=album.title))

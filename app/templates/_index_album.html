@@ -1,0 +1,21 @@
+{#
+Copyright 2014, Julen Landa Alustiza
+
+Licensed under the Eiffel Forum License 2.
+#}
+<div class="col-md-4 portfolio-item">
+    <a href="{{ url_for('gallery.album', id=album_element.id) }}">
+    <img class="img-responsive" src="
+    {% if album_element.directories  and album_element.directories.first().photos and album_element.directories.first().photos.first() %}
+    {{ url_for('gallery.photo_thumbnail', id=album_element.directories.first().photos.first().id, width='600', height='400') }}
+    {% else %}
+    http://placehold.it/600x400
+    {% endif %}
+    ">
+    </a>
+    <h3>
+        <a href="{{ url_for('gallery.album', id=album_element.id) }}">{{ album_element.title }}</a>
+    </h3>
+    <p>{{ album_element.description }}</p>
+</div>
+

@@ -29,6 +29,7 @@ Licensed under the Eiffel Forum License 2.
         <li><a href="{{ url_for('gallery.edit_album', id=album.id) }}">{{ _('Edit') }}</a></li>
         <li><a href="#" data-toggle="modal" data-target="#deleteModal" data-message="{{ _('Are you sure you want to remove %(album)s album? Deleting an album will delete all the inside directory and photos', album=album.title) }}" data-url="{{ url_for('gallery.delete_album', id=album.id) }}">{{ _('Delete') }}</a></li>
         <li><a href="{{ url_for('gallery.refresh_album', id=album.id) }}">{{ _('Refresh') }}</a></li>
+        <li><a href="{{ url_for('gallery.new_album', parent_id=album.id) }}">{{ _('New sub-album') }}</a></li>
         {% endif %}
         {% if request.args.get('show_hidden') %}
         <li><a href="{{ url_for('gallery.album', id=album.id) }}">{{ _('Hide hidden photos') }}</a></li>
@@ -41,6 +42,14 @@ Licensed under the Eiffel Forum License 2.
 {% endblock %}
 
 {% block page_content %}
+{% if album.sub_albums %}
+<h3>{{ _('Sub-Albums') }}</h3>
+<div class="row">
+{% for album_element in album.sub_albums %}
+{% include '_index_album.html' %}
+{% endfor %}
+</div>
+{% endif %}
 <div class="row">
 {% for photo in photos.items %}
 <div class="col-md-3 portfolio-item thumb">

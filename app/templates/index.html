@@ -29,22 +29,8 @@ Licensed under the Eiffel Forum License 2.
 
 {% block page_content %}
 <div class="row">
-    {% for album in albums.items %}
-    <div class="col-md-4 portfolio-item">
-        <a href="{{ url_for('gallery.album', id=album.id) }}">
-            <img class="img-responsive" src="
-            {% if album.directories  and album.directories.first().photos and album.directories.first().photos.first() %}
-	    {{ url_for('gallery.photo_thumbnail', id=album.directories.first().photos.first().id, width='600', height='400') }}
-            {% else %}
-            http://placehold.it/600x400
-            {% endif %}
-            ">
-        </a>
-        <h3>
-            <a href="{{ url_for('gallery.album', id=album.id) }}">{{ album.title }}</a>
-        </h3>
-        <p>{{ album.description }}</p>
-    </div>
+    {% for album_element in albums.items %}
+    {% include '_index_album.html' %}
     {% if loop.index is divisibleby 3 %}
     <div class="clearfix"></div>
     {% endif %}
