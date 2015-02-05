@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-01-23 18:51+0100\n"
+"POT-Creation-Date: 2015-02-05 18:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgid "Email"
 msgstr ""
 
 #: app/admin/forms.py:27 app/gallery/forms.py:28 app/gallery/forms.py:38
-#: app/templates/album.html:29 app/templates/album.html:79
+#: app/templates/album.html:29 app/templates/album.html:88
 #: app/templates/photo.html:32 app/templates/admin/user.html:24
 msgid "Edit"
 msgstr ""
@@ -69,47 +69,47 @@ msgstr ""
 msgid "Caption"
 msgstr ""
 
-#: app/gallery/views.py:45
+#: app/gallery/views.py:50
 #, python-format
 msgid "New album '%(album)s' added"
 msgstr ""
 
-#: app/gallery/views.py:80
+#: app/gallery/views.py:85
 #, python-format
 msgid "'%(album)s' album edited"
 msgstr ""
 
-#: app/gallery/views.py:86
+#: app/gallery/views.py:91
 #, python-format
 msgid "'%(directory)s' directory added to '%(album)s'"
 msgstr ""
 
-#: app/gallery/views.py:103
+#: app/gallery/views.py:108
 #, python-format
 msgid "'%(album)s' album deleted"
 msgstr ""
 
-#: app/gallery/views.py:114
+#: app/gallery/views.py:119
 #, python-format
 msgid "'%(album)s' album refreshed"
 msgstr ""
 
-#: app/gallery/views.py:125
+#: app/gallery/views.py:130
 #, python-format
 msgid "Directory '%(directory)s' refreshed"
 msgstr ""
 
-#: app/gallery/views.py:138
+#: app/gallery/views.py:143
 #, python-format
 msgid "'%(directory)s' directory deleted from '%(album)s'"
 msgstr ""
 
-#: app/gallery/views.py:161
+#: app/gallery/views.py:166
 #, python-format
 msgid "'%(photo)s' updated on '%(album)s'"
 msgstr ""
 
-#: app/gallery/views.py:176
+#: app/gallery/views.py:181
 #, python-format
 msgid "Photo '%(photo)s' edited"
 msgstr ""
@@ -155,100 +155,108 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: app/templates/album.html:34
+#: app/templates/album.html:32
+msgid "New sub-album"
+msgstr ""
+
+#: app/templates/album.html:35
 msgid "Hide hidden photos"
 msgstr ""
 
-#: app/templates/album.html:36
+#: app/templates/album.html:37
 msgid "Show hidden photos"
 msgstr ""
 
-#: app/templates/album.html:77 app/templates/admin/user.html:13
+#: app/templates/album.html:46
+msgid "Sub-Albums"
+msgstr ""
+
+#: app/templates/album.html:86 app/templates/admin/user.html:13
 msgid "Information"
 msgstr ""
 
-#: app/templates/album.html:78
+#: app/templates/album.html:87
 msgid "Open"
 msgstr ""
 
-#: app/templates/album.html:80
+#: app/templates/album.html:89
 msgid "Download"
 msgstr ""
 
-#: app/templates/album.html:87 app/templates/edit_album.html:19
+#: app/templates/album.html:96 app/templates/edit_album.html:19
 msgid "General"
 msgstr ""
 
-#: app/templates/album.html:88
+#: app/templates/album.html:97
 msgid "Exif"
 msgstr ""
 
-#: app/templates/album.html:93 app/templates/photo.html:46
+#: app/templates/album.html:102 app/templates/photo.html:46
 msgid "General Information"
 msgstr ""
 
-#: app/templates/album.html:97 app/templates/photo.html:48
+#: app/templates/album.html:106 app/templates/photo.html:48
 msgid "File:"
 msgstr ""
 
-#: app/templates/album.html:98 app/templates/photo.html:49
+#: app/templates/album.html:107 app/templates/photo.html:49
 msgid "Size:"
 msgstr ""
 
-#: app/templates/album.html:101 app/templates/photo.html:50
+#: app/templates/album.html:110 app/templates/photo.html:50
 msgid "Format:"
 msgstr ""
 
-#: app/templates/album.html:102 app/templates/photo.html:51
+#: app/templates/album.html:111 app/templates/photo.html:51
 msgid "Resolution:"
 msgstr ""
 
-#: app/templates/album.html:103
+#: app/templates/album.html:112
 msgid "Mode:"
 msgstr ""
 
-#: app/templates/album.html:109 app/templates/photo.html:52
+#: app/templates/album.html:118 app/templates/photo.html:52
 msgid "Exif Information"
 msgstr ""
 
-#: app/templates/album.html:113 app/templates/photo.html:54
+#: app/templates/album.html:122 app/templates/photo.html:54
 msgid "Taken at:"
 msgstr ""
 
-#: app/templates/album.html:114 app/templates/photo.html:59
+#: app/templates/album.html:123 app/templates/photo.html:59
 msgid "Camera:"
 msgstr ""
 
-#: app/templates/album.html:115 app/templates/photo.html:67
+#: app/templates/album.html:124 app/templates/photo.html:67
 msgid "Orientation:"
 msgstr ""
 
-#: app/templates/album.html:118 app/templates/photo.html:72
+#: app/templates/album.html:127 app/templates/photo.html:72
 msgid "Focal Length:"
 msgstr ""
 
-#: app/templates/album.html:119 app/templates/photo.html:77
+#: app/templates/album.html:128 app/templates/photo.html:77
 msgid "Aperture:"
 msgstr ""
 
-#: app/templates/album.html:120 app/templates/photo.html:82
+#: app/templates/album.html:129 app/templates/photo.html:82
 msgid "ISO Speed"
 msgstr ""
 
-#: app/templates/album.html:123 app/templates/photo.html:87
+#: app/templates/album.html:132 app/templates/photo.html:87
 msgid "Latitude"
 msgstr ""
 
-#: app/templates/album.html:124 app/templates/photo.html:92
+#: app/templates/album.html:133 app/templates/photo.html:92
 msgid "Longitude"
 msgstr ""
 
-#: app/templates/album.html:134 app/templates/edit_photo.html:37
+#: app/templates/album.html:143 app/templates/edit_photo.html:37
 #: app/templates/photo.html:103
 msgid "Previous"
 msgstr ""
 
-#: app/templates/album.html:137 app/templates/edit_photo.html:40
+#: app/templates/album.html:146 app/templates/edit_photo.html:40
 #: app/templates/photo.html:106
 msgid "Next"
 msgstr ""
