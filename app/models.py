@@ -87,11 +87,11 @@ class Album(db.Model):
 
     def is_hidden(self):
        ''' returns whether album is hidden or not.'''
-       if album.hidden:
+       if self.hidden:
            return True
        else:
-           if album.parent:
-               return album.parend.is_hidden()
+           if self.parent:
+               return self.parent.is_hidden()
            else:
                return False
 
@@ -259,10 +259,10 @@ class Photo(db.Model):
 
     def is_hidden(self):
         ''' Returns wheter photo is hidden or not '''
-        if photo.hidden:
+        if self.hidden:
             return True
         else:
-            return photo.directory.album.is_hidden()
+            return self.directory.album.is_hidden()
 
 class ExifData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
