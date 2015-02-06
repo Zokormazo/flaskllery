@@ -59,7 +59,7 @@ def album(id, page=1):
     View album
     '''
     album = Album.query.get_or_404(id)
-    if album.hidden and not current_user.has_roles(['admin', 'poweruser']):
+    if not current_user.has_roles(['admin', 'poweruser']) and album.is_hidden():
         abort(404)
     if request.args.get('show_hidden'):
         photos = Photo.query.join(Directory).filter(Directory.album_id == album.id).paginate(page, current_app.config['FLASKLLERY_PHOTOS_PER_PAGE'], False)
@@ -150,7 +150,7 @@ def photo(id):
     Show photo
     '''
     photo = Photo.query.get_or_404(id)
-    if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+    if not current_user.has_roles(['admin', 'poweruser']) and photo.is_hidden():
         abort(404)
     return render_template('photo.html', photo=photo)
 
@@ -203,7 +203,7 @@ def photo_file(id):
     Return raw photo file
     '''
     photo = Photo.query.get_or_404(id)
-    if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+    if not current_user.has_roles(['admin', 'poweruser']) and photo.is_hidden():
         abort(404)
     return send_file(photo.path)
 
@@ -214,7 +214,7 @@ def photo_thumbnail(id, width, height):
     Return photo thumbnail of given dimension
     '''
     photo = Photo.query.get_or_404(id)
-    if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+    if not current_user.has_roles(['admin', 'poweruser']) and photo.is_hidden():
         abort(404)
     return send_file(photo.thumbnail_path(width,height))
 
@@ -225,7 +225,7 @@ def json_album_photos(id):
     Returns an array of photo ids that belongs to Album
     '''
     album = Album.query.get(id)
-    if album.hidden and not current_user.has_roles(['admin', 'poweruser']):
+    if not current_user.has_roles(['admin', 'poweruser']) and album.is_hidden():
         abort(404)
     photos = Photo.query.with_entities(Photo.id).join(Directory).filter(Directory.album_id == id).all()
     if photos:
@@ -240,7 +240,7 @@ def json_photo(id):
     Returns photo info in json format
     '''
     photo = Photo.query.get_or_404(id)
-    if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+    if not current_user.has_roles(['admin', 'poweruser']) and photo.is_hidden():
         abort(404)
     return jsonify(photo.json())
 
@@ -251,7 +251,7 @@ def json_photo_exif(id):
     Returns exif info in json format
     '''
     photo = Photo.query.get_or_404(id)
-    if (photo.hidden or photo.directory.album.hidden) and not current_user.has_roles(['admin', 'poweruser']):
+    if not current_user.has_roles(['admin', 'poweruser']) and photo.is_hidden():
         abort(404)
     if photo.exif_data:
         return jsonify(photo.exif_data.json())

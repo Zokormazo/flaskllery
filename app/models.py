@@ -85,6 +85,16 @@ class Album(db.Model):
         for directory in self.directories:
             directory.refresh()
 
+    def is_hidden(self):
+       ''' returns whether album is hidden or not.'''
+       if album.hidden:
+           return True
+       else:
+           if album.parent:
+               return album.parend.is_hidden()
+           else:
+               return False
+
 class Directory(db.Model):
     id = db.Column(db.Integer, primary_key = True)
 
@@ -202,7 +212,6 @@ class Photo(db.Model):
                 if write:
                     db.session.add(exif)
 
-
     def thumbnail_path(self, width, height):
         ''' Return thumbnail's path
         Generates thumbnail if needed
@@ -247,6 +256,13 @@ class Photo(db.Model):
                 'filename' : self.filename()
         }
         return json_photo
+
+    def is_hidden(self):
+        ''' Returns wheter photo is hidden or not '''
+        if photo.hidden:
+            return True
+        else:
+            return photo.directory.album.is_hidden()
 
 class ExifData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
