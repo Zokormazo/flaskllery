@@ -3,147 +3,149 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2015-02-06 09:51+0100\n"
-"PO-Revision-Date: 2015-02-06 09:51+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2015-02-06 14:57+0100\n"
+"Last-Translator: Laura <lazeru08@gmail.com>\n"
 "Language-Team: ca <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: Català\n"
 
 #: app/admin/forms.py:24 app/templates/admin/members.html:16
 msgid "Username"
-msgstr ""
+msgstr "Nom d'usuari"
 
 #: app/admin/forms.py:25
 msgid "Email"
-msgstr ""
+msgstr "Correu"
 
 #: app/admin/forms.py:27 app/gallery/forms.py:28 app/gallery/forms.py:38
 #: app/templates/album.html:29 app/templates/album.html:88
 #: app/templates/photo.html:32 app/templates/admin/user.html:24
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: app/admin/views.py:57
 #, python-format
 msgid "User '%(user)s' edited"
-msgstr ""
+msgstr "S'ha editat l'usuari '%(user)s'"
 
 #: app/admin/views.py:72
 #, python-format
 msgid "User '%(user)s' deleted"
-msgstr ""
+msgstr "S'ha esborrat l'usuari '%(user)s'"
 
 #: app/gallery/forms.py:17
 msgid "Path is not a valid directory. Please try with a valid directory path"
 msgstr ""
+"El directori introduït no és vàlid. Sisuplau, provi amb un directori vàlid."
 
 #: app/gallery/forms.py:20 app/gallery/forms.py:25 app/gallery/forms.py:35
 msgid "Title"
-msgstr ""
+msgstr "Títol"
 
 #: app/gallery/forms.py:21 app/gallery/forms.py:26
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #: app/gallery/forms.py:22 app/gallery/forms.py:32
 msgid "Add"
-msgstr ""
+msgstr "Afegir"
 
 #: app/gallery/forms.py:27 app/gallery/forms.py:37
 msgid "Hidden"
-msgstr ""
+msgstr "Amagar"
 
 #: app/gallery/forms.py:31
 msgid "Path"
-msgstr ""
+msgstr "Directori"
 
 #: app/gallery/forms.py:36
 msgid "Caption"
-msgstr ""
+msgstr "Peu de foto"
 
 #: app/gallery/views.py:50
 #, python-format
 msgid "New album '%(album)s' added"
-msgstr ""
+msgstr "S'ha afegit el nou àlbum '%(album)s'"
 
 #: app/gallery/views.py:85
 #, python-format
 msgid "'%(album)s' album edited"
-msgstr ""
+msgstr "S'ha editat l'àlbum '%(album)s'"
 
 #: app/gallery/views.py:91
 #, python-format
 msgid "'%(directory)s' directory added to '%(album)s'"
-msgstr ""
+msgstr "El directori '%(directory)s' s'ha afegit a l'àlbum '%(album)s'"
 
 #: app/gallery/views.py:108
 #, python-format
 msgid "'%(album)s' album deleted"
-msgstr ""
+msgstr "S'ha esborrat l'àlbum '%(album)s'"
 
 #: app/gallery/views.py:119
 #, python-format
 msgid "'%(album)s' album refreshed"
-msgstr ""
+msgstr "S'ha actualitzat l'àlbum '%(album)s' "
 
 #: app/gallery/views.py:130
 #, python-format
 msgid "Directory '%(directory)s' refreshed"
-msgstr ""
+msgstr "S'ha actualitzat el directori '%(directory)s'"
 
 #: app/gallery/views.py:143
 #, python-format
 msgid "'%(directory)s' directory deleted from '%(album)s'"
-msgstr ""
+msgstr "S'ha esborrat el directori '%(directory)s' de '%(album)s'"
 
 #: app/gallery/views.py:166
 #, python-format
 msgid "'%(photo)s' updated on '%(album)s'"
-msgstr ""
+msgstr "'%(photo)s' actualitzada a '%(album)s'"
 
 #: app/gallery/views.py:181
 #, python-format
 msgid "Photo '%(photo)s' edited"
-msgstr ""
+msgstr "S'ha editat la foto '%(photo)s'"
 
 #: app/templates/404.html:10
 msgid "File Not Found"
-msgstr ""
+msgstr "No s'ha trobat el fitxer"
 
 #: app/templates/404.html:11 app/templates/500.html:12
 msgid "Back"
-msgstr ""
+msgstr "Enrere"
 
 #: app/templates/500.html:10
 msgid "An unexpected error has occurred"
-msgstr ""
+msgstr "S'ha produït un error inesperat"
 
 #: app/templates/500.html:11
 msgid "The administrator has been notified. Sorry for the inconvenience!"
-msgstr ""
+msgstr "S'ha avisat a l'administrador. Disculpi les molèsties!"
 
 #: app/templates/_macros.html:55
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·lar"
 
 #: app/templates/_macros.html:56 app/templates/album.html:30
 #: app/templates/edit_album.html:46 app/templates/photo.html:33
 #: app/templates/admin/members.html:51 app/templates/admin/user.html:26
 msgid "Delete"
-msgstr ""
+msgstr "Esborrar"
 
 #: app/templates/album.html:26
 msgid "Album"
-msgstr ""
+msgstr "Àlbum"
 
 #: app/templates/album.html:30
 #, python-format
@@ -151,136 +153,138 @@ msgid ""
 "Are you sure you want to remove %(album)s album? Deleting an album will "
 "delete all the inside directory and photos"
 msgstr ""
+"Està segur de voler esborrar l'àlbum %(album)s? Esborrar un àlbum també "
+"comporta esborrar-ne els seus directoris i fotos"
 
 #: app/templates/album.html:31 app/templates/edit_album.html:45
 msgid "Refresh"
-msgstr ""
+msgstr "Actualitzar"
 
 #: app/templates/album.html:32
 msgid "New sub-album"
-msgstr ""
+msgstr "Nou subàlbum"
 
 #: app/templates/album.html:35
 msgid "Hide hidden photos"
-msgstr ""
+msgstr "Amagar les fotos amagades"
 
 #: app/templates/album.html:37
 msgid "Show hidden photos"
-msgstr ""
+msgstr "Mostrar les fotos amagades"
 
 #: app/templates/album.html:46
 msgid "Sub-Albums"
-msgstr ""
+msgstr "Subàlbums"
 
 #: app/templates/album.html:86 app/templates/admin/user.html:13
 msgid "Information"
-msgstr ""
+msgstr "Informació"
 
 #: app/templates/album.html:87
 msgid "Open"
-msgstr ""
+msgstr "Obrir"
 
 #: app/templates/album.html:89
 msgid "Download"
-msgstr ""
+msgstr "Descarregar"
 
 #: app/templates/album.html:96 app/templates/edit_album.html:19
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: app/templates/album.html:97
 msgid "Exif"
-msgstr ""
+msgstr "Exif"
 
 #: app/templates/album.html:102 app/templates/photo.html:46
 msgid "General Information"
-msgstr ""
+msgstr "Informació general"
 
 #: app/templates/album.html:106 app/templates/photo.html:48
 msgid "File:"
-msgstr ""
+msgstr "Fitxer:"
 
 #: app/templates/album.html:107 app/templates/photo.html:49
 msgid "Size:"
-msgstr ""
+msgstr "Mida:"
 
 #: app/templates/album.html:110 app/templates/photo.html:50
 msgid "Format:"
-msgstr ""
+msgstr "Format:"
 
 #: app/templates/album.html:111 app/templates/photo.html:51
 msgid "Resolution:"
-msgstr ""
+msgstr "Resolució:"
 
 #: app/templates/album.html:112
 msgid "Mode:"
-msgstr ""
+msgstr "Mode:"
 
 #: app/templates/album.html:118 app/templates/photo.html:52
 msgid "Exif Information"
-msgstr ""
+msgstr "Informació exif"
 
 #: app/templates/album.html:122 app/templates/photo.html:54
 msgid "Taken at:"
-msgstr ""
+msgstr "Feta el:"
 
 #: app/templates/album.html:123 app/templates/photo.html:59
 msgid "Camera:"
-msgstr ""
+msgstr "Càmera:"
 
 #: app/templates/album.html:124 app/templates/photo.html:67
 msgid "Orientation:"
-msgstr ""
+msgstr "Orientació:"
 
 #: app/templates/album.html:127 app/templates/photo.html:72
 msgid "Focal Length:"
-msgstr ""
+msgstr "Longitud focal:"
 
 #: app/templates/album.html:128 app/templates/photo.html:77
 msgid "Aperture:"
-msgstr ""
+msgstr "Obertura:"
 
 #: app/templates/album.html:129 app/templates/photo.html:82
 msgid "ISO Speed"
-msgstr ""
+msgstr "Velocitat ISO"
 
 #: app/templates/album.html:132 app/templates/photo.html:87
 msgid "Latitude"
-msgstr ""
+msgstr "Latitud"
 
 #: app/templates/album.html:133 app/templates/photo.html:92
 msgid "Longitude"
-msgstr ""
+msgstr "Longitud"
 
 #: app/templates/album.html:143 app/templates/edit_photo.html:37
 #: app/templates/photo.html:103
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: app/templates/album.html:146 app/templates/edit_photo.html:40
 #: app/templates/photo.html:106
 msgid "Next"
-msgstr ""
+msgstr "Següent"
 
 #: app/templates/edit_album.html:11
 msgid "Edit Album"
-msgstr ""
+msgstr "Editar àlbum"
 
 #: app/templates/edit_album.html:22
 msgid "Directories"
-msgstr ""
+msgstr "Directoris"
 
 #: app/templates/edit_album.html:26
 msgid "path"
-msgstr ""
+msgstr "directori"
 
 #: app/templates/edit_album.html:27
 msgid "since"
-msgstr ""
+msgstr "des de"
 
 #: app/templates/edit_album.html:28
 msgid "last updated"
-msgstr ""
+msgstr "última actualització"
 
 #: app/templates/edit_album.html:46
 #, python-format
@@ -288,228 +292,229 @@ msgid ""
 "Are you sure you want to delete %(directory)s directory? Removing a "
 "directory will remove all the photos fetched from it"
 msgstr ""
+"Està segur que vol esborrar el directori %(directory)s? Esborrar un "
+"directori comporta esborrar les fotos tretes d'allà"
 
 #: app/templates/edit_photo.html:17
 msgid "Edit Photo"
-msgstr ""
+msgstr "Editar foto"
 
 #: app/templates/index.html:11
 msgid "Albums"
-msgstr ""
+msgstr "Àlbums"
 
 #: app/templates/index.html:17
 msgid "Gallery"
-msgstr ""
+msgstr "Galeria"
 
 #: app/templates/index.html:19 app/templates/new_album.html:10
 msgid "New Album"
-msgstr ""
+msgstr "Nou àlbum"
 
 #: app/templates/index.html:21
 msgid "Hide hidden albums"
-msgstr ""
+msgstr "Amagar els àlbums amagats"
 
 #: app/templates/index.html:23
 msgid "Show hidden albums"
-msgstr ""
+msgstr "Mostrar els àlbums amagats"
 
 #: app/templates/member_base.html:25
 msgid "Dashboard"
-msgstr ""
+msgstr "Tauler de control"
 
 #: app/templates/member_base.html:30
 msgid "Profile"
-msgstr ""
+msgstr "Perfil"
 
 #: app/templates/member_base.html:31
 msgid "Logout"
-msgstr ""
+msgstr "Sortir"
 
 #: app/templates/member_base.html:35
 msgid "Log In"
-msgstr ""
+msgstr "Iniciar sessió"
 
 #: app/templates/photo.html:30
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 #: app/templates/photo.html:33
 #, python-format
 msgid "Are you sure you want to remove %(photo)s photo?"
-msgstr ""
+msgstr "Està segur que vol esborrar la foto %(photo)s?"
 
 #: app/templates/photo.html:34
 msgid "Update"
-msgstr ""
+msgstr "Actualitzar"
 
 #: app/templates/admin/edit_user.html:10
 #, python-format
 msgid "Edit user: %(user)s"
-msgstr ""
+msgstr "Editar l'usuari: %(user)s"
 
 #: app/templates/admin/member_base.html:13
 msgid "Main"
-msgstr ""
+msgstr "Inici"
 
 #: app/templates/admin/member_base.html:14
 msgid "Overview"
-msgstr ""
+msgstr "Resum"
 
 #: app/templates/admin/member_base.html:16 app/templates/admin/members.html:10
 msgid "Members"
-msgstr ""
+msgstr "Membres"
 
 #: app/templates/admin/member_base.html:17
 msgid "Manage"
-msgstr ""
+msgstr "Gestionar"
 
 #: app/templates/admin/member_base.html:18
 msgid "Add User"
-msgstr ""
+msgstr "Afegir usuari"
 
 #: app/templates/admin/members.html:15
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: app/templates/admin/members.html:17
 msgid "E-mail"
-msgstr ""
+msgstr "Correu"
 
 #: app/templates/admin/members.html:18
 msgid "Date registered"
-msgstr ""
+msgstr "Data de registre"
 
 #: app/templates/admin/members.html:19
 msgid "Date confirmed"
-msgstr ""
+msgstr "Data de confirmació"
 
 #: app/templates/admin/members.html:20
 msgid "Date last seen"
-msgstr ""
+msgstr "Data últim accés"
 
 #: app/templates/admin/members.html:21
 msgid "Roles"
-msgstr ""
+msgstr "Paper"
 
 #: app/templates/admin/members.html:22
 msgid "Actions"
-msgstr ""
+msgstr "Accions"
 
 #: app/templates/admin/members.html:36
 msgid "not confirmed"
-msgstr ""
+msgstr "no confirmat"
 
 #: app/templates/admin/members.html:43
 msgid "never"
-msgstr ""
+msgstr "mai"
 
 #: app/templates/admin/members.html:51
 #, python-format
 msgid "Are you sure you want to delete %(user)s user?"
-msgstr ""
+msgstr "Està segur que vol esborrar l'usuari %(user)s?"
 
 #: app/templates/admin/user.html:14
 msgid "Username:"
-msgstr ""
+msgstr "Nom d'usuari:"
 
 #: app/templates/admin/user.html:15
 msgid "e-mail:"
-msgstr ""
+msgstr "Correu:"
 
 #: app/templates/admin/user.html:16
 msgid "Registered at:"
-msgstr ""
+msgstr "Registrat el:"
 
 #: app/templates/admin/user.html:17
 msgid "Confirmed at:"
-msgstr ""
+msgstr "Confirmat el:"
 
 #: app/templates/admin/user.html:18
 msgid "Last seen:"
-msgstr ""
+msgstr "Últim accés:"
 
 #: app/templates/admin/user.html:19
 msgid "Roles:"
-msgstr ""
+msgstr "Papers:"
 
 #: app/templates/admin/user.html:29
 msgid "Resend confirmation mail"
-msgstr ""
+msgstr "Reenviar correu de confirmació"
 
 #: app/templates/admin/user.html:30
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: app/templates/admin/user.html:32
 msgid "Send reset password mail"
-msgstr ""
+msgstr "Enviar correu per restablir la contrasenya"
 
 #: app/templates/flask_user/change_password.html:9
 msgid "Change Password"
-msgstr ""
+msgstr "Canviar contrasenya"
 
 #: app/templates/flask_user/change_username.html:10
 msgid "Change Username"
-msgstr ""
+msgstr "Canviar nom d'usuari"
 
 #: app/templates/flask_user/forgot_password.html:12
 msgid "Forgot Password"
-msgstr ""
+msgstr "He oblidat la meva contrasenya"
 
 #: app/templates/flask_user/login.html:12
 msgid "Sign in"
-msgstr ""
+msgstr "Iniciar sessió"
 
 #: app/templates/flask_user/login.html:24
 msgid "Remember me"
-msgstr ""
+msgstr "Recorda'm"
 
 #: app/templates/flask_user/login.html:28
 msgid "Login"
-msgstr ""
+msgstr "Iniciar sessió"
 
 #: app/templates/flask_user/register.html:13
 msgid "Register"
-msgstr ""
+msgstr "Registrar-se"
 
 #: app/templates/flask_user/register.html:35
 msgid "Already registered? Sign in."
-msgstr ""
+msgstr "Ja està registrat? Iniciï sessió."
 
 #: app/templates/flask_user/resend_confirm_email.html:10
 msgid "Resend Confirmation Email"
-msgstr ""
+msgstr "Reenviar correu de confirmació"
 
 #: app/templates/flask_user/reset_password.html:12
 msgid "Reset Password"
-msgstr ""
+msgstr "Restablir contrasenya"
 
 #: app/templates/flask_user/user_profile.html:9
 msgid "User profile"
-msgstr ""
+msgstr "Perfil d'usuari"
 
 #: app/templates/flask_user/user_profile.html:16
 msgid "Change username"
-msgstr ""
+msgstr "Canviar nom d'usuari"
 
 #: app/templates/flask_user/user_profile.html:19
 msgid "Change password"
-msgstr ""
+msgstr "Canviar contrasenya"
 
 #: app/templates/flask_user/user_profile.html:21
 #: app/templates/user/preferences.html:10
 msgid "Preferences"
-msgstr ""
+msgstr "Configuració"
 
 #: app/users/forms.py:13
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: app/users/forms.py:14
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: app/users/views.py:32
 msgid "Saved"
-msgstr ""
-
+msgstr "Guardat"
