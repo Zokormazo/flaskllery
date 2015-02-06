@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2015-02-06 09:51+0100\n"
-"PO-Revision-Date: 2015-02-06 14:57+0100\n"
+"PO-Revision-Date: 2015-02-06 15:14+0100\n"
 "Last-Translator: Laura <lazeru08@gmail.com>\n"
 "Language-Team: ca <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -329,7 +329,7 @@ msgstr "Perfil"
 
 #: app/templates/member_base.html:31
 msgid "Logout"
-msgstr "Sortir"
+msgstr "Tancar sessió"
 
 #: app/templates/member_base.html:35
 msgid "Log In"
