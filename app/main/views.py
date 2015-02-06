@@ -16,10 +16,11 @@ def index():
 
 @babel.localeselector
 def get_locale():
-    if current_user.language:
+    if hasattr(current_user, 'language') and current_user.language:
         return current_user.language
     translations = [str(translation) for translation in babel.list_translations()]
-    return request.accept_languages.best_match(translations)
+    if translations:
+        return request.accept_languages.best_match(translations)
 
 @blueprint.before_app_request
 def before_app_request():
