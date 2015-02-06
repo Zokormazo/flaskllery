@@ -3,199 +3,205 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-10-25 21:19-0700\n"
-"PO-Revision-Date: 2015-02-06 09:51+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2015-02-06 14:53+0100\n"
+"Last-Translator: Laura <lazeru08@gmail.com>\n"
 "Language-Team: ca <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: Català\n"
 
 #: flask_user/forms.py:35
 msgid ""
 "Password must have at least 6 characters with one lowercase letter, one "
 "uppercase letter and one number"
 msgstr ""
+"La contrasenya ha de tenir com a mínim 6 caràcters i contenir una majúscula, "
+"una minúscula i un número"
 
 #: flask_user/forms.py:41
 msgid "Username must be at least 3 characters long"
-msgstr ""
+msgstr "El nom d'usuari ha de tenir almenys 3 caràcters"
 
 #: flask_user/forms.py:46
 msgid "Username may only contain letters, numbers, '-', '.' and '_'."
 msgstr ""
+"El nom d'usuari només pot estar format per lletres, números, '-', '.' i '_'."
 
 #: flask_user/forms.py:52
 msgid "This Username is already in use. Please try another one."
 msgstr ""
+"Ja existeix un usuari amb aquest nom. Provi amb un altre nom d'usuari, "
+"siusplau."
 
 #: flask_user/forms.py:59
 msgid "This Email is already in use. Please try another one."
-msgstr ""
+msgstr "Aquest correu ja està en ús. Provi amb un altre, siusplau."
 
 #: flask_user/forms.py:66 flask_user/forms.py:148 flask_user/forms.py:161
 #: flask_user/forms.py:237 flask_user/forms.py:279
 msgid "Email"
-msgstr ""
+msgstr "Correu"
 
 #: flask_user/forms.py:67 flask_user/forms.py:149 flask_user/forms.py:162
 #: flask_user/forms.py:238 flask_user/forms.py:280
 msgid "Email is required"
-msgstr ""
+msgstr "Es necessita un correu"
 
 #: flask_user/forms.py:68 flask_user/forms.py:150 flask_user/forms.py:163
 #: flask_user/forms.py:239 flask_user/forms.py:281
 msgid "Invalid Email"
-msgstr ""
+msgstr "Correu incorrecte"
 
 #: flask_user/forms.py:70
 msgid "Add Email"
-msgstr ""
+msgstr "Afegir correu"
 
 #: flask_user/forms.py:73 flask_user/forms.py:117
 msgid "Old Password"
-msgstr ""
+msgstr "Contrasenya antiga"
 
 #: flask_user/forms.py:74 flask_user/forms.py:118
 msgid "Old Password is required"
-msgstr ""
+msgstr "Es necessita la contrasenya antiga"
 
 #: flask_user/forms.py:76 flask_user/forms.py:286
 msgid "New Password"
-msgstr ""
+msgstr "Nova contrasenya"
 
 #: flask_user/forms.py:77 flask_user/forms.py:287
 msgid "New Password is required"
-msgstr ""
+msgstr "Es necessita la contrasenya nova"
 
 #: flask_user/forms.py:79 flask_user/forms.py:288
 msgid "Retype New Password"
-msgstr ""
+msgstr "Reescrigui la contrasenya"
 
 #: flask_user/forms.py:80 flask_user/forms.py:289
 msgid "New Password and Retype Password did not match"
-msgstr ""
+msgstr "La contrasenya nova i la contrasenya nova reescrita no coincideixen"
 
 #: flask_user/forms.py:83 flask_user/forms.py:291
 #: flask_user/templates/flask_user/change_password.html:5
 msgid "Change Password"
-msgstr ""
+msgstr "Canviar contrasenya"
 
 #: flask_user/forms.py:106 flask_user/forms.py:141
 msgid "Old Password is incorrect"
-msgstr ""
+msgstr "La contrasenya antiga és incorrecta"
 
 #: flask_user/forms.py:113
 msgid "New Username"
-msgstr ""
+msgstr "Nou nom d'usuari"
 
 #: flask_user/forms.py:114 flask_user/forms.py:159 flask_user/forms.py:235
 msgid "Username is required"
-msgstr ""
+msgstr "Es necessita el nom d'usuari"
 
 #: flask_user/forms.py:121
 #: flask_user/templates/flask_user/change_username.html:5
 msgid "Change Username"
-msgstr ""
+msgstr "Canviar nom d'usuari"
 
 #: flask_user/forms.py:152
 msgid "Send reset password email"
-msgstr ""
+msgstr "Enviar un correu per restablir la contrasenya"
 
 #: flask_user/forms.py:158 flask_user/forms.py:234
 msgid "Username"
-msgstr ""
+msgstr "Nom d'usuari"
 
 #: flask_user/forms.py:165 flask_user/forms.py:241
 msgid "Password"
-msgstr ""
+msgstr "Contrasenya"
 
 #: flask_user/forms.py:166 flask_user/forms.py:242
 msgid "Password is required"
-msgstr ""
+msgstr "Es necessita la contrasenya"
 
 #: flask_user/forms.py:168
 msgid "Remember me"
-msgstr ""
+msgstr "Recorda'm"
 
 #: flask_user/forms.py:170 flask_user/templates/flask_user/login.html:5
 #: flask_user/templates/flask_user/login_or_register.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "Iniciar sessió"
 
 #: flask_user/forms.py:177
 msgid "Username or Email"
-msgstr ""
+msgstr "Nom d'usuari o correu"
 
 #: flask_user/forms.py:219
 msgid "Incorrect Username/Email and Password"
-msgstr ""
+msgstr "Nom d'usuari/correu i contrasenya incorrectes"
 
 #: flask_user/forms.py:221
 msgid "Incorrect Username and Password"
-msgstr ""
+msgstr "Nom d'usuari i contrasenya incorrectes"
 
 #: flask_user/forms.py:223
 msgid "Incorrect Email and Password"
-msgstr ""
+msgstr "Correu i contrasenya incorrectes"
 
 #: flask_user/forms.py:243
 msgid "Retype Password"
-msgstr ""
+msgstr "Reescrigui la contrasenya"
 
 #: flask_user/forms.py:244
 msgid "Password and Retype Password did not match"
-msgstr ""
+msgstr "La contrasenya i la contrasenya reescrita no coincideixen"
 
 #: flask_user/forms.py:246
 #: flask_user/templates/flask_user/login_or_register.html:41
 #: flask_user/templates/flask_user/register.html:5
 msgid "Register"
-msgstr ""
+msgstr "Registrar-se"
 
 #: flask_user/forms.py:283
 msgid "Resend email confirmation email"
-msgstr ""
+msgstr "Reenviar correu de confirmació"
 
 #: flask_user/translations.py:73
 msgid "Home Page"
-msgstr ""
+msgstr "Inici"
 
 #: flask_user/translations.py:74
 msgid "Profile Page"
-msgstr ""
+msgstr "Perfil"
 
 #: flask_user/translations.py:75
 msgid "Special Page"
-msgstr ""
+msgstr "Especial"
 
 #: flask_user/views.py:29
 msgid "Your confirmation token has expired."
-msgstr ""
+msgstr "El vostre token de confirmació ha caducat."
 
 #: flask_user/views.py:33 flask_user/views.py:55
 msgid "Invalid confirmation token."
-msgstr ""
+msgstr "Token de confirmació invàlid."
 
 #: flask_user/views.py:62
 msgid "Your email has been confirmed."
-msgstr ""
+msgstr "S'ha confirmat el vostre correu."
 
 #: flask_user/views.py:101
 msgid "Your password has been changed successfully."
-msgstr ""
+msgstr "S'ha canviat la contrasenya satisfactòriament."
 
 #: flask_user/views.py:137
 #, python-format
 msgid "Your username has been changed to '%(username)s'."
-msgstr ""
+msgstr "El vostre nom d'usuari ara és '%(username)s'."
 
 #: flask_user/views.py:218
 #, python-format
@@ -203,39 +209,43 @@ msgid ""
 "A reset password email has been sent to '%(email)s'. Open that email and "
 "follow the instructions to reset your password."
 msgstr ""
+"S'ha enviat un correu de restabliment de contrasenya a '%(email)s'. Obri el "
+"correu i segueixi les instruccions per restablir la contrasenya."
 
 #: flask_user/views.py:289
 msgid "You have signed out successfully."
-msgstr ""
+msgstr "S'ha tancat la sessió satisfactòriament."
 
 #: flask_user/views.py:474
 msgid "Your reset password token has expired."
-msgstr ""
+msgstr "El token per restablir la contrasenya ha caducat."
 
 #: flask_user/views.py:478 flask_user/views.py:489
 msgid "Your reset password token is invalid."
-msgstr ""
+msgstr "El token per restablir la contrasenya no és vàlid."
 
 #: flask_user/views.py:512
 msgid ""
 "Your password has been reset successfully. Please sign in with your new "
 "password"
 msgstr ""
+"S'ha restablert la contrasenya satisfactòriament. Siusplau, iniciï sessió "
+"amb la nova contrasenya"
 
 #: flask_user/views.py:529
 #, python-format
 msgid "You must confirm your email to access '%(url)s'."
-msgstr ""
+msgstr "Ha de confirmar el correu per poder accedir a '%(url)s'."
 
 #: flask_user/views.py:540
 #, python-format
 msgid "You must be signed in to access '%(url)s'."
-msgstr ""
+msgstr "Ha d'haver iniciat sessió per poder accedir '%(url)s'."
 
 #: flask_user/views.py:554
 #, python-format
 msgid "You do not have permission to access '%(url)s'."
-msgstr ""
+msgstr "No té permís per accedir a '%(url)s'."
 
 #: flask_user/views.py:598 flask_user/views.py:619
 #, python-format
@@ -243,65 +253,69 @@ msgid ""
 "A confirmation email has been sent to %(email)s with instructions to "
 "complete your registration."
 msgstr ""
+"S'ha enviat un correu de confirmació a %(email)s amb instruccions per poder "
+"completar el registre."
 
 #: flask_user/views.py:600
 msgid "You have registered successfully."
-msgstr ""
+msgstr "S'ha registrat satisfactòriament."
 
 #: flask_user/views.py:628
 msgid "Your account has not been enabled."
-msgstr ""
+msgstr "El vostre compte no s'ha validat."
 
 #: flask_user/views.py:637
 #, python-format
 msgid ""
-"Your email address has not yet been confirmed. Check your email Inbox and"
-" Spam folders for the confirmation email or <a href=\"%(url)s\">Re-send "
+"Your email address has not yet been confirmed. Check your email Inbox and "
+"Spam folders for the confirmation email or <a href=\"%(url)s\">Re-send "
 "confirmation email</a>."
 msgstr ""
+"El vostre correu encara no s'ha confirmat. Revisi la safata d'entrada i el "
+"correu no desitjat del vostre correu o  <a href=\"%(url)s\">Torna a enviar "
+"el correu de confirmació</a>."
 
 #: flask_user/views.py:648
 msgid "You have signed in successfully."
-msgstr ""
+msgstr "Ha iniciat sessió satisfactòriament."
 
 #: flask_user/templates/flask_user/forgot_password.html:5
 msgid "Forgot Password"
-msgstr ""
+msgstr "He oblidat la meva contrasenya"
 
 #: flask_user/templates/flask_user/login.html:21
 msgid "New here? Register."
-msgstr ""
+msgstr "És nou? Registri's."
 
 #: flask_user/templates/flask_user/login.html:44
 #: flask_user/templates/flask_user/login_or_register.html:34
 msgid "Forgot your Password?"
-msgstr ""
+msgstr "Ha oblidat la contrasenya?"
 
 #: flask_user/templates/flask_user/manage_emails.html:5
 msgid "Manage Emails"
-msgstr ""
+msgstr "Gestionar correus"
 
 #: flask_user/templates/flask_user/register.html:21
 msgid "Already registered? Sign in."
-msgstr ""
+msgstr "Ja està registrat? Iniciï sessió."
 
 #: flask_user/templates/flask_user/resend_confirm_email.html:5
 msgid "Resend Confirmation Email"
-msgstr ""
+msgstr "Reenviar correu de confirmació"
 
 #: flask_user/templates/flask_user/reset_password.html:5
 msgid "Reset Password"
-msgstr ""
+msgstr "Restablir contrasenya"
 
 #: flask_user/templates/flask_user/user_profile.html:5
 msgid "User profile"
-msgstr ""
+msgstr "Perfil d'usuari"
 
 #: flask_user/templates/flask_user/user_profile.html:8
 msgid "Change username"
-msgstr ""
+msgstr "Canviar nom d'usuari"
 
 #: flask_user/templates/flask_user/user_profile.html:11
 msgid "Change password"
-msgstr ""
-
+msgstr "Canviar contrasenya"
